@@ -1,11 +1,12 @@
 # include <stdio.h>
 # include <math.h>
 
-int U1(void);
-int U2(void);
-int U3(void);
-int U4(void);
-int U5(void);
+int U1(void);//ä¸€å…ƒäºŒæ¬¡æ–¹ç¨‹
+int U2(void);//ä¸€å…ƒäºŒæ¬¡ä¸ç­‰å¼ï¼ˆå¼€ï¼‰
+int U3(void);//ä¸€å…ƒäºŒæ¬¡ä¸ç­‰å¼ï¼ˆé—­ï¼‰
+int U4(void);//å¿ƒå½¢ç‚¹é˜µ
+int U5(void);//åŸºæœ¬ä¸ç­‰å¼
+int U6(void);//è¿›åˆ¶è½¬æ¢
 
 int main(void)
 {
@@ -15,7 +16,7 @@ int main(void)
 	do
 	{
 		printf("***********************************\n");
-		printf("ÇëÊäÈë±àºÅ(0---²Ëµ¥)£º");
+		printf("è¯·è¾“å…¥ç¼–å·(0---èœå•)ï¼š");
 		scanf_s("%d", &u);
 		while ((ch = getchar()) != '\n')
 			continue;
@@ -23,11 +24,12 @@ int main(void)
 
 		if (u == 0)
 		{
-			printf("1---½â·½³Ì:ax^2 + bx + c = 0\n");
-			printf("2---½â²»µÈÊ½:ax^2 + bx + c £¾ 0\n");
-			printf("3---½â²»µÈÊ½:ax^2 + bx + c ¡Ý 0\n");
-			printf("4---ÐÄÐÎµãÕó\n");
-			printf("5---»ù±¾²»µÈÊ½(ÕýÊµÊý)\n");
+			printf("1---è§£æ–¹ç¨‹:ax^2 + bx + c = 0\n");
+			printf("2---è§£ä¸ç­‰å¼:ax^2 + bx + c ï¼ž 0\n");
+			printf("3---è§£ä¸ç­‰å¼:ax^2 + bx + c â‰¥ 0\n");
+			printf("4---å¿ƒå½¢ç‚¹é˜µ\n");
+			printf("5---åŸºæœ¬ä¸ç­‰å¼\n");
+			printf("6---è¿›åˆ¶è½¬æ¢\n");
 			scanf_s("%d", &u);
 			while ((ch = getchar()) != '\n')
 				continue;
@@ -39,17 +41,14 @@ int main(void)
 		{
 			U1();
 		}
-
 		else if (u == 2)
 		{
 			U2();
 		}
-
 		else if (u == 3)
 		{
 			U3();
 		}
-
 		else if (u == 4)
 		{
 			U4();
@@ -58,11 +57,15 @@ int main(void)
 		{
 			U5();
 		}
+		else if (u == 6)
+		{
+			U6();
+		}
 		else;
 
 		u++;
 		printf("***********************************\n");
-		printf("ÊäÈë0ÖØÐÂ¿ªÊ¼:");
+		printf("è¾“å…¥0é‡æ–°å¼€å§‹:");
 		scanf_s("%d", &u);
 	} while (u == 0);
 	return 0;
@@ -77,15 +80,15 @@ int U1(void)
 	double x2;
 	char ch;
 
-	printf("ÇëÊäÈë¶þ´ÎÏîÏµÊý:\n");
+	printf("è¯·è¾“å…¥äºŒæ¬¡é¡¹ç³»æ•°:\n");
 	scanf_s("%f", &a);
 	while ((ch = getchar()) != '\n')
 		continue;
-	printf("ÇëÊäÈëÒ»´ÎÏîÏµÊý:\n");
+	printf("è¯·è¾“å…¥ä¸€æ¬¡é¡¹ç³»æ•°:\n");
 	scanf_s("%f", &b);
 	while ((ch = getchar()) != '\n')
 		continue;
-	printf("ÇëÊäÈë³£ÊýÏî:\n");
+	printf("è¯·è¾“å…¥å¸¸æ•°é¡¹:\n");
 	scanf_s("%f", &c);
 	while ((ch = getchar()) != '\n')
 		continue;
@@ -100,11 +103,11 @@ int U1(void)
 		}
 		else if (c != 0)
 		{
-			printf("ÎÞ½â.\n");
+			printf("æ— è§£.\n");
 		}
 		else
 		{
-			printf("ÈÎÒâ¸´Êý.\n");
+			printf("ä»»æ„å¤æ•°.\n");
 		}
 	}
 
@@ -128,7 +131,7 @@ int U1(void)
 		{
 			x1 = -b / (2 * a);
 			x2 = sqrt(-delta) / (2 * a);
-			printf("x = %lf ¡À %lf * i,\n", x1, x2);
+			printf("x = %lf Â± %lf * i,\n", x1, x2);
 		}
 
 		float y = (4 * a * c - b * b) / (4 * a);
@@ -155,40 +158,40 @@ int U2(void)
 	double x2;
 	char ch;
 
-	printf("ÇëÊäÈë¶þ´ÎÏîÏµÊý:\n");
+	printf("è¯·è¾“å…¥äºŒæ¬¡é¡¹ç³»æ•°:\n");
 	scanf_s("%f", &a);
 	while ((ch = getchar()) != '\n')
 		continue;
-	printf("ÇëÊäÈëÒ»´ÎÏîÏµÊý:\n");
+	printf("è¯·è¾“å…¥ä¸€æ¬¡é¡¹ç³»æ•°:\n");
 	scanf_s("%f", &b);
 	while ((ch = getchar()) != '\n')
 		continue;
-	printf("ÇëÊäÈë³£ÊýÏî:\n");
+	printf("è¯·è¾“å…¥å¸¸æ•°é¡¹:\n");
 	scanf_s("%f", &c);
 	while ((ch = getchar()) != '\n')
 		continue;
 	printf("***********************************\n");
-	printf("½â¼¯Îª ");
+	printf("è§£é›†ä¸º ");
 
 	if (a == 0)
 	{
 		if (b > 0)
 		{
 			x1 = -c / b;
-			printf("(%lf, +¡Þ).\n", x1);
+			printf("(%lf, +âˆž).\n", x1);
 		}
 		else if (b < 0)
 		{
 			x1 = -c / b;
-			printf("(-¡Þ, %lf).\n", x1);
+			printf("(-âˆž, %lf).\n", x1);
 		}
 		else if (c > 0)
 		{
-			printf("(-¡Þ, +¡Þ).\n");
+			printf("(-âˆž, +âˆž).\n");
 		}
 		else
 		{
-			printf("¿Õ¼¯.\n");
+			printf("ç©ºé›†.\n");
 		}
 	}
 
@@ -200,19 +203,19 @@ int U2(void)
 			if (delta == 0)
 			{
 				x1 = -b / (2 * a);
-				printf("(-¡Þ, %lf)¡È(%lf, +¡Þ).\n", x1, x1);
+				printf("(-âˆž, %lf)âˆª(%lf, +âˆž).\n", x1, x1);
 			}
 
 			else if (delta > 0)
 			{
 				x1 = (-b + sqrt(delta)) / (2 * a);
 				x2 = (-b - sqrt(delta)) / (2 * a);
-				printf("(-¡Þ, %lf)¡È(%lf, +¡Þ).\n", x2, x1);
+				printf("(-âˆž, %lf)âˆª(%lf, +âˆž).\n", x2, x1);
 			}
 
 			else
 			{
-				printf("(-¡Þ, +¡Þ).\n");
+				printf("(-âˆž, +âˆž).\n");
 			}
 		}
 
@@ -227,7 +230,7 @@ int U2(void)
 
 			else
 			{
-				printf("¿Õ¼¯.");
+				printf("ç©ºé›†.");
 
 			}
 		}
@@ -244,40 +247,40 @@ int U3(void)
 	double x2;
 	char ch;
 
-	printf("ÇëÊäÈë¶þ´ÎÏîÏµÊý:\n");
+	printf("è¯·è¾“å…¥äºŒæ¬¡é¡¹ç³»æ•°:\n");
 	scanf_s("%f", &a);
 	while ((ch = getchar()) != '\n')
 		continue;
-	printf("ÇëÊäÈëÒ»´ÎÏîÏµÊý:\n");
+	printf("è¯·è¾“å…¥ä¸€æ¬¡é¡¹ç³»æ•°:\n");
 	scanf_s("%f", &b);
 	while ((ch = getchar()) != '\n')
 		continue;
-	printf("ÇëÊäÈë³£ÊýÏî:\n");
+	printf("è¯·è¾“å…¥å¸¸æ•°é¡¹:\n");
 	scanf_s("%f", &c);
 	while ((ch = getchar()) != '\n')
 		continue;
 	printf("***********************************\n");
-	printf("½â¼¯Îª ");
+	printf("è§£é›†ä¸º ");
 
 	if (a == 0)
 	{
 		if (b > 0)
 		{
 			x1 = -c / b;
-			printf("[%lf, +¡Þ).\n", x1);
+			printf("[%lf, +âˆž).\n", x1);
 		}
 		else if (b < 0)
 		{
 			x1 = -c / b;
-			printf("(-¡Þ, %lf]).\n", x1);
+			printf("(-âˆž, %lf]).\n", x1);
 		}
 		else if (c >= 0)
 		{
-			printf("(-¡Þ, +¡Þ).\n");
+			printf("(-âˆž, +âˆž).\n");
 		}
 		else
 		{
-			printf("¿Õ¼¯.\n");
+			printf("ç©ºé›†.\n");
 		}
 	}
 
@@ -288,13 +291,13 @@ int U3(void)
 		{
 			if (delta <= 0)
 			{
-				printf("(-¡Þ, +¡Þ).\n");
+				printf("(-âˆž, +âˆž).\n");
 			}
 			else
 			{
 				x1 = (-b + sqrt(delta)) / (2 * a);
 				x2 = (-b - sqrt(delta)) / (2 * a);
-				printf("(-¡Þ, %lf]¡È[%lf, +¡Þ).\n", x2, x1);
+				printf("(-âˆž, %lf]âˆª[%lf, +âˆž).\n", x2, x1);
 			}
 		}
 		else
@@ -312,7 +315,7 @@ int U3(void)
 			}
 			else
 			{
-				printf("¿Õ¼¯.\n");
+				printf("ç©ºé›†.\n");
 			}
 		}
 	}
@@ -354,8 +357,8 @@ int U5(void)
 	double s;
 	char ch;
 
-	printf("1.ÒÑÖª(mx + ny),ÇóxyµÄÈ¡Öµ·¶Î§.\n");
-	printf("2.ÒÑÖªxy,Çó(mx + ny)µÄÈ¡Öµ·¶Î§.\n");
+	printf("1.å·²çŸ¥(mx + ny),æ±‚xyçš„å–å€¼èŒƒå›´.\n");
+	printf("2.å·²çŸ¥xy,æ±‚(mx + ny)çš„å–å€¼èŒƒå›´.\n");
 	scanf_s("%d", &a);
 	while ((ch = getchar()) != '\n')
 		continue;
@@ -400,6 +403,119 @@ int U5(void)
 		s = 2 * sqrt(m*n*p);
 		printf("S >= %lf.\n", s);
 	}
+	else;
+
+	return 0;
+}
+
+int In_Bin(int x)
+{
+	int start = x;
+	int y = 0;
+	int i;
+	int bit = (int)(log10(x));
+	int end;
+	int position = 1;
+
+	for (i = 0; i <= bit; i++)
+	{
+		end = x % 10;
+		y += end * position;
+		x = (x - end) / 10;
+		position *= 2;
+	}
+
+	printf("Dec(x) = %d\n", y);
+	printf("Hex(x) = %X\n", y);
+	printf("Bin(x) = %d\n", start);
+	printf("Oct(x) = %o\n", y);
+
+	return 0;
+}
+
+int Out_Bin(int x)
+{
+	int start = x;
+	int y = 0;
+	int i;
+	int bit;
+	int position;
+
+	do
+	{
+		bit = 0;
+		for (i = 2; i <= x; i *= 2)
+		{
+			bit++;
+			position = i;
+		}
+		y += (int)(pow(10, bit));
+		x -= position;
+	} while (x > 0);
+
+	printf("Dec(x) = %d\n", start);
+	printf("Hex(x) = %X\n", start);
+	printf("Bin(x) = %d\n", y);
+	printf("Oct(x) = %o\n", start);
+	return 0;
+}
+
+int U6(void)
+{
+	char ch;
+
+	int x;
+	printf("è¿›åˆ¶è½¬æ¢{x|3â‰¤xâ‰¤1023,xâˆˆZï½.\n");
+	printf("1 - Dec; 2 - Hex(3FF); 3 - Bin(1111111111); 4 - Oct(1777).\n");
+	scanf_s("%d", &x);
+	while ((ch = getchar()) != '\n')
+		continue;
+	printf("***********************************\n");
+
+	if (x == 1)
+	{
+		printf("Dec(x) = ");
+		scanf_s("%d", &x);
+		printf("***********************************\n");
+
+		if (x >= 3 && x <= 1023)
+			Out_Bin(x);
+		else;
+	}
+
+	else if (x == 2)
+	{
+		printf("Hex(x) = ");
+		scanf_s("%X", &x);
+		printf("***********************************\n");
+
+		if (x >= 3 && x <= 1023)
+			Out_Bin(x);
+		else;
+	}
+
+	else if (x == 3)
+	{
+		printf("Bin(x) = ");
+		scanf_s("%d", &x);
+		printf("***********************************\n");
+
+		if (x >= 3 && x <= 1111111111)
+			In_Bin(x);
+		else;
+	}
+
+	else if (x == 4)
+	{
+		printf("Oct(x) = ");
+		scanf_s("%o", &x);
+		printf("***********************************\n");
+
+		if (x >= 3 && x <= 1023)
+			Out_Bin(x);
+		else;
+	}
+
 	else;
 
 	return 0;
