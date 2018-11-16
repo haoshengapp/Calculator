@@ -6,7 +6,7 @@ double root[3];
 
 int sum_product(double a, double b)//a = x1 + x2; b = x1 * x2
 {
-	//ÓÃÎ¤´ï¶¨Àí½â·½³Ì x^2 - ax + b = 0
+	//ç”¨éŸ¦è¾¾å®šç†è§£æ–¹ç¨‹ x^2 - ax + b = 0
 	double delta = a * a - 4 * b;
 
 	if (delta < 0)
@@ -42,37 +42,37 @@ int main(void)
 {
 	double coef[4];
 	double p, q, r, delta, theta;
-	printf("½â·½³Ì:ax^3 + bx^2 + cx + d = 0\n");
-	printf("ÇëÊäÈëÈı´ÎÏîÏµÊı:\n");
+	printf("è§£æ–¹ç¨‹:ax^3 + bx^2 + cx + d = 0\n");
+	printf("è¯·è¾“å…¥ä¸‰æ¬¡é¡¹ç³»æ•°:\n");
 	scanf_s("%lf", &coef[0]);
-	printf("ÇëÊäÈë¶ş´ÎÏîÏµÊı:\n");
+	printf("è¯·è¾“å…¥äºŒæ¬¡é¡¹ç³»æ•°:\n");
 	scanf_s("%lf", &coef[1]);
-	printf("ÇëÊäÈëÒ»´ÎÏîÏµÊı:\n");
+	printf("è¯·è¾“å…¥ä¸€æ¬¡é¡¹ç³»æ•°:\n");
 	scanf_s("%lf", &coef[2]);
-	printf("ÇëÊäÈë³£ÊıÏî:\n");
+	printf("è¯·è¾“å…¥å¸¸æ•°é¡¹:\n");
 	scanf_s("%lf", &coef[3]);
 
 
-	if (coef[0] != 0)//ÅĞ¶ÏÊÇ·ñÎªÒ»ÔªÈı´Î·½³Ì
+	if (coef[0] != 0)//åˆ¤æ–­æ˜¯å¦ä¸ºä¸€å…ƒä¸‰æ¬¡æ–¹ç¨‹
 	{
-		//·½³Ì»¯Îª x^3 + ax^2 + bx + c = 0
+		//æ–¹ç¨‹åŒ–ä¸º x^3 + ax^2 + bx + c = 0
 		coef[1] /= coef[0];
 		coef[2] /= coef[0];
 		coef[3] /= coef[0];
 		
-		p = coef[2] - coef[1] * coef[1] / 3;//·½³Ì»¯Îª x^3 +px + q = 0
+		p = coef[2] - coef[1] * coef[1] / 3;//æ–¹ç¨‹åŒ–ä¸º x^3 +px + q = 0
 		q = coef[3] + coef[1] * (2 * coef[1] * coef[1] - 9 * coef[2]) / 27;
 		
-		p /= 3;//´ËÊ±,p ´ú±í p(Ô­)/2
-		q /= 2;//´ËÊ±,q ´ú±í q(Ô­)/3
-		delta = q * q + p * p * p;//ÅĞ±ğÊ½ (p/3)^3 + (q/2)^2, 
+		p /= 3;//æ­¤æ—¶,p ä»£è¡¨ p(åŸ)/2
+		q /= 2;//æ­¤æ—¶,q ä»£è¡¨ q(åŸ)/3
+		delta = q * q + p * p * p;//åˆ¤åˆ«å¼ (p/3)^3 + (q/2)^2, 
 		
 		if (delta < 0)
 		{
 			r = sqrt(-p * p * p);
 			theta = acos(-q / r) / 3;
 			cube_root(r, 0);
-			x[0] = 2 * root[0] * cos(theta) - coef[1] / 3;//¿¨¶ûµ¤¹«Ê½
+			x[0] = 2 * root[0] * cos(theta) - coef[1] / 3;
 			printf("x1 = %lf.\n", x[0]);
 			sum_product(-coef[1] - x[0], coef[2] + x[0] * (x[0] + coef[1]));
 		}
@@ -81,13 +81,13 @@ int main(void)
 			root[0] = sqrt(delta);
 			cube_root(-q + root[0], 1);
 			cube_root(-q - root[0], 2);
-			x[0] = root[1] + root[2] - coef[1] / 3;
+			x[0] = root[1] + root[2] - coef[1] / 3;//å¡å°”ä¸¹å…¬å¼
 			printf("x1 = %lf.\n", x[0]);
 			sum_product(-coef[1] - x[0], coef[2] + x[0] * (x[0] + coef[1]));
 		}
 	}
 	else
-		printf("·ÇÒ»ÔªÈı´Î·½³Ì.\n");
+		printf("éä¸€å…ƒä¸‰æ¬¡æ–¹ç¨‹.\n");
 
 	system("PAUSE");
 	return 0;
