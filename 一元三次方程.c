@@ -73,8 +73,6 @@ int main(void)
 			theta = acos(-q / r) / 3;
 			cube_root(r, 0);
 			x[0] = 2 * root[0] * cos(theta) - coef[1] / 3;
-			printf("x1 = %lf.\n", x[0]);
-			sum_product(-coef[1] - x[0], coef[2] + x[0] * (x[0] + coef[1]));
 		}
 		else
 		{
@@ -82,9 +80,9 @@ int main(void)
 			cube_root(-q + root[0], 1);
 			cube_root(-q - root[0], 2);
 			x[0] = root[1] + root[2] - coef[1] / 3;//卡尔丹公式
-			printf("x1 = %lf.\n", x[0]);
-			sum_product(-coef[1] - x[0], coef[2] + x[0] * (x[0] + coef[1]));
 		}
+		printf("x1 = %lf.\n", x[0]);
+		sum_product(-coef[1] - x[0], coef[2] + x[0] * (x[0] + coef[1]));
 	}
 	else
 		printf("非一元三次方程.\n");
