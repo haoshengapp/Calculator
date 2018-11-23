@@ -63,8 +63,8 @@ int main(void)
 		p = coef[2] - coef[1] * coef[1] / 3;//方程化为 x^3 +px + q = 0
 		q = coef[3] + coef[1] * (2 * coef[1] * coef[1] - 9 * coef[2]) / 27;
 		
-		p /= 3;//此时,p 代表 p(原)/2
-		q /= 2;//此时,q 代表 q(原)/3
+		p /= 3;//此时,p 代表 p(原)/3
+		q /= 2;//此时,q 代表 q(原)/2
 		delta = q * q + p * p * p;//判别式 (p/3)^3 + (q/2)^2, 
 		
 		if (delta < 0)
