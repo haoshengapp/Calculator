@@ -1,223 +1,212 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <windows.h>
 #include <math.h>
-#include <conio.h>
-#define NR(x) (sizeof(x)/sizeof(x[0]+0))
+#include <windows.h>
+const long long int max = 9223372036854775807;//2^63 - 1
 
-enum
+int dec_input(void)
 {
-	UP = 72,
-	DOWN = 80,
-	LEFT = 75,
-	RIGHT = 77,
-	ENTER = 13,
-	ESC = 27,
-};
-char *menu[] =
-{
-	(char*)"*Dec[3,1023]*",
-	(char*)"*Hex[3,3FF]*",
-	(char*)"*Bin[11,1111111111]*",
-	(char*)"*Oct[3,1777]*",
-	(char*)"*返回*\n\n"
-};
-CONSOLE_CURSOR_INFO cci;
-COORD pos = { 0,0 };
-void showmenu(HANDLE hOut, char **menu, int size, int index)
-{
-	int i;
-	system("cls");	//设置显示的文本的颜色 
-	SetConsoleTextAttribute(hOut, FOREGROUND_GREEN | 0x8);	//初始化控制台显示的X,Y轴的坐标
+	int i, iota;
+	long long int x;
+	int a[16] = { 0 };
+	printf("[DEC]\n");
+	scanf("%lld", &x);
 
-	for (i = 0; i < size; i++)
+	printf("[HEX]\n0x%16.16llX\n", x);
+	printf("[OCT]\n0%llo\n", x);
+	printf("[BIN]\n");
+	for (i = 0; x > 0; i++)
 	{
-		//如果i==index表示在当前选项的位置，默认初始化显示是第一项，显示为红色
-		if (i == index)
+		iota = x % 16;
+		switch (iota)
 		{
-			SetConsoleTextAttribute(hOut, FOREGROUND_RED | 0x8);
-
-			pos.X = 8;
-			pos.Y = i;	//设置光标坐标
-			SetConsoleCursorPosition(hOut, pos);
-
-			printf("%s", menu[i]);
+		case(1):a[i] = 1; break;
+		case(2):a[i] = 10; break;
+		case(3):a[i] = 11; break;
+		case(4):a[i] = 100; break;
+		case(5):a[i] = 101; break;
+		case(6):a[i] = 110; break;
+		case(7):a[i] = 111; break;
+		case(8):a[i] = 1000; break;
+		case(9):a[i] = 1001; break;
+		case(10):a[i] = 1010; break;
+		case(11):a[i] = 1011; break;
+		case(12):a[i] = 1100; break;
+		case(13):a[i] = 1101; break;
+		case(14):a[i] = 1110; break;
+		case(15):a[i] = 1111; break;
+		default:break;
 		}
-		//否则显示为白色 
+		x /= 16;
+	}
+	for (i = 15; i > -1; i--)
+	{
+		if (i % 4 == 0)
+		{
+			printf("%4.4d\n", a[i]);//16位一换行
+		}
 		else
 		{
-			SetConsoleTextAttribute(hOut, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
-
-			pos.X = 10;
-			pos.Y = i;	//设置光标坐标
-			SetConsoleCursorPosition(hOut, pos);
-
-			printf("%s", menu[i]);
+			printf("%4.4d ", a[i]);//4位一空格
 		}
 	}
-	//刷新标准输出缓冲区 
-	fflush(stdout);
-}
-
-//获取用户输入的接口 
-int get_userinput(int *index, int size)
-{
-	int ch = _getch();
-
-	switch (ch)
-	{
-	case UP:
-		if (*index > 0)
-			*index -= 1;
-		break;//光标向上移动 
-	case DOWN:
-		if (*index < size)
-			*index += 1;
-		break; //下
-	case LEFT:	return ESC;//左 
-	case RIGHT:	return ENTER;//右 
-	case ENTER:	return ENTER;//回车 
-	case ESC:	return ESC;//ESC
-	}
-	return 0;
-}
-
-int in_bin(int x)
-{
-	int start = x;
-	int y = 0;
-	int bit = (int)(log10(x));
-	int position = 1;
-	int i, end;
-
-	for (i = 0; i <= bit; i++)
-	{
-		end = x % 10;
-		y += end * position;
-		x = (x - end) / 10;
-		position *= 2;
-	}
-
-	printf("Dec(x) = %d\n", y);
-	printf("Hex(x) = %X\n", y);
-	printf("Bin(x) = %d\n", start);
-	printf("Oct(x) = %o\n", y);
 
 	return 0;
 }
 
-int out_bin(int x)
+int hex_input(void)
 {
-	int start = x;
-	int y = 0;
-	int i, bit;
+	int i, iota;
+	long long int x;
+	int a[16] = { 0 };
+	printf("[HEX]\n0x");
+	scanf("%llx", &x);
 
-	do
+	printf("[DEC]\n%lld\n", x);
+	printf("[OCT]\n0%llo\n", x);
+	printf("[BIN]\n");
+	for (i = 0; x > 0; i++)
 	{
-		bit = 0;
-		for (i = 2; i <= x; i *= 2)
+		iota = x % 16;
+		switch (iota)
 		{
-			bit++;
+		case(1):a[i] = 1; break;
+		case(2):a[i] = 10; break;
+		case(3):a[i] = 11; break;
+		case(4):a[i] = 100; break;
+		case(5):a[i] = 101; break;
+		case(6):a[i] = 110; break;
+		case(7):a[i] = 111; break;
+		case(8):a[i] = 1000; break;
+		case(9):a[i] = 1001; break;
+		case(10):a[i] = 1010; break;
+		case(11):a[i] = 1011; break;
+		case(12):a[i] = 1100; break;
+		case(13):a[i] = 1101; break;
+		case(14):a[i] = 1110; break;
+		case(15):a[i] = 1111; break;
+		default:break;
 		}
-		y += (int)(pow(10, bit));
-		x -= i / 2;
-	} while (x > 0);
-
-	printf("Dec(x) = %d\n", start);
-	printf("Hex(x) = %X\n", start);
-	printf("Bin(x) = %d\n", y);
-	printf("Oct(x) = %o\n", start);
-
-	return 0;
-}
-
-int dec(void)
-{
-	int x;
-
-	printf("Dec(x) = ");
-	scanf_s("%d", &x);
-	printf("***********************************\n");
-
-	if (x > 2 && x < 1024)
-		out_bin(x);
-	else;
-	system("pause");
-	return 0;
-}
-
-int hex(void)
-{
-	int x;
-
-	printf("Hex(x) = ");
-	scanf_s("%X", &x);
-	printf("***********************************\n");
-
-	if (x > 2 && x < 1024)
-		out_bin(x);
-	else;
-	system("pause");
-	return 0;
-}
-
-int bin(void)
-{
-	int x;
-
-	printf("Bin(x) = ");
-	scanf_s("%d", &x);
-	printf("***********************************\n");
-
-	if (x > 10 && x < 1111111112)
-		in_bin(x);
-	else;
-	system("pause");
-	return 0;
-}
-
-int oct(void)
-{
-	int x;
-
-	printf("Oct(x) = ");
-	scanf_s("%o", &x);
-	printf("***********************************\n");
-
-	if (x > 2 && x < 1024)
-		out_bin(x);
-	else;
-	system("pause");
-	return 0;
-}
-
-int main(void)
-{
-	int index = 0;
-	// 获取当前的句柄-- - 设置为标准输出句柄
-	HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
-	GetConsoleCursorInfo(hOut, &cci);		//获取光标信息
-	cci.dwSize = 1;							//设置光标大小
-	cci.bVisible = 0;						//设置光标不可见 FALSE
-	SetConsoleCursorInfo(hOut, &cci);		//设置(应用)光标信息
-
-	while (1)
+		x /= 16;
+	}
+	for (i = 15; i > -1; i--)
 	{
-		showmenu(hOut, menu, NR(menu), index);
-		int ret = get_userinput(&index, NR(menu));
-		if (ret == ESC)
-			break;
-		if (ret == ENTER)
+		if (i % 4 == 0)
 		{
-			switch (index)
+			printf("%4.4d\n", a[i]);//16位一换行
+		}
+		else
+		{
+			printf("%4.4d ", a[i]);//4位一空格
+		}
+	}
+
+	return 0;
+}
+
+int bin_input(void)
+{
+	int i, j, iota;
+	long long int x;
+	int a[8] = { 0 };
+	printf("[BIN]\n");
+	for (i = 0; i < 8; i++)
+	{
+		printf("[%d,%d]:", 57 - 8 * i, 64 - 8 * i);
+		scanf("%d", &a[i]);
+		x = 0;
+		for (j = 0; j < 8; j++)
+		{
+			iota = (a[i] < pow(10, 7 - j)) ? 0 : 1;
+			x *= 2;
+			if(iota == 1)
 			{
-			case 0:	dec(); break;
-			case 1:	hex(); break;
-			case 2:	bin(); break;
-			case 3:	oct(); break;
-			case 4:	return 0;	//退出
+				a[i] -= (int)pow(10, 7 - j);
+				x++;
 			}
 		}
+		a[i] = (int)x;
 	}
+
+	x = 0;
+	for (i = 0; i < 8; i++)
+	{
+		x *= 256;
+		x += a[i];
+	}
+
+	printf("[DEC]\n%lld\n", x);
+	printf("[HEX]\n0x%16.16llX\n", x);
+	printf("[OCT]\n0%llo\n", x);
+
+	return 0;
+}
+
+int oct_input(void)
+{
+	int i, iota;
+	long long int x;
+	int a[16] = { 0 };
+	printf("[OCT]\n");
+	scanf("%llo", &x);
+
+	printf("[DEC]\n%lld\n", x);
+	printf("[HEX]\n0x%16.16llX\n", x);
+	printf("[BIN]\n");
+	for (i = 0; x > 0; i++)
+	{
+		iota = x % 16;
+		switch (iota)
+		{
+		case(1):a[i] = 1; break;
+		case(2):a[i] = 10; break;
+		case(3):a[i] = 11; break;
+		case(4):a[i] = 100; break;
+		case(5):a[i] = 101; break;
+		case(6):a[i] = 110; break;
+		case(7):a[i] = 111; break;
+		case(8):a[i] = 1000; break;
+		case(9):a[i] = 1001; break;
+		case(10):a[i] = 1010; break;
+		case(11):a[i] = 1011; break;
+		case(12):a[i] = 1100; break;
+		case(13):a[i] = 1101; break;
+		case(14):a[i] = 1110; break;
+		case(15):a[i] = 1111; break;
+		default:break;
+		}
+		x /= 16;
+	}
+	for (i = 15; i > -1; i--)
+	{
+		if (i % 4 == 0)
+		{
+			printf("%4.4d\n", a[i]);//16位一换行
+		}
+		else
+		{
+			printf("%4.4d ", a[i]);//4位一空格
+		}
+	}
+
+	return 0;
+}
+
+int main()
+{
+	int index;
+	printf("请选择进制:\n1.DEC; 2.HEX; 3.BIN; 4.OCT.\n");
+	scanf("%d", &index);
+
+	switch (index)
+	{
+	case(1):dec_input(); break;
+	case(2):hex_input(); break;
+	case(3):bin_input(); break;
+	case(4):oct_input(); break;
+	case(5):printf("取值范围[0,%lld]\n", max); break;
+	default:printf("输入错误,请重新输入.\n"); break;
+	}
+
+	system("pause");
 	return 0;
 }
