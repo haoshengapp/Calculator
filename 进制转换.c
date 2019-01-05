@@ -17,32 +17,32 @@ int bin_input(void)
 	{
 		for (i = 0; i < 64; i++)
 		{
-			a[i] = (int)(str[i] - '0');
-			if (a[i] != 0 && a[i] != 1)
+			a[i] = (int)(str[i] - '0');//char转int
+			if (a[i] == 0 || a[i] == 1)
 			{
-				printf("语法错误\n");
+				a[i] = 1 - a[i];//取反
+				x = 2 * x + a[i];
+			}
+			else
+			{
+				printf("语法错误.\n");
 				return 0;
 			}
 		}
-		for (i = 0; i < 64; i++)
-		{
-			a[i] = 1 - a[i];
-			x = 2 * x + a[i];
-		}
-		x = x - 1 - max;
+		x = x - 1 - max;//x -= 2^63
 	}
 	else 
 	{
 		for (i = 0; i < strlen(str); i++)
 		{
 			a[i] = (int)(str[i] - '0');
-			if (a[i] != 0 && a[i] != 1)
+			if (a[i] == 0 || a[i] == 1)
+				x = 2 * x + a[i];
+			else
 			{
-				printf("语法错误\n");
+				printf("语法错误.\n");
 				return 0;
 			}
-			else
-				x = 2 * x + a[i];
 		}
 	}
 
