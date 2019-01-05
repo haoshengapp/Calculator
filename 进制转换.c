@@ -13,14 +13,14 @@ int bin_input(void)
 
 	printf("[BIN]\n");
 	scanf_s("%s", str, 65);
-	if (strlen == 64 && str[0] == 1)
+	if (strlen(str) == 64 && str[0] == 1)
 	{
-		for (i = 0; i < strlen(str); i++)
+		for (i = 0; i < 64; i++)
 		{
 			a[i] = (int)(str[i] - '0');
 			if (a[i] != 0 && a[i] != 1)
 			{
-				printf("Óï·¨´íÎó\n");
+				printf("è¯­æ³•é”™è¯¯\n");
 				return 0;
 			}
 		}
@@ -38,7 +38,7 @@ int bin_input(void)
 			a[i] = (int)(str[i] - '0');
 			if (a[i] != 0 && a[i] != 1)
 			{
-				printf("Óï·¨´íÎó\n");
+				printf("è¯­æ³•é”™è¯¯\n");
 				return 0;
 			}
 			else
@@ -98,7 +98,7 @@ int bin_output(void)
 	for (i = 3; i > -1; i--)
 	{
 		for (j = 3; j > -1; j--)
-			printf("%4.4d ", a[i][j]);//¿Õ¸ñ
+			printf("%4.4d ", a[i][j]);//ç©ºæ ¼
 		printf("\n");
 	}
 
@@ -109,7 +109,6 @@ int dec_input(void)
 {
 	printf("[DEC]\n");
 	scanf_s("%lld", &x);
-
 	printf("[HEX]\n0x%16.16llX\n", x);
 	printf("[OCT]\n0%llo\n", x);
 
@@ -151,7 +150,7 @@ int main(void)
 {
 	int index;
 
-	printf("ÇëÑ¡Ôñ½øÖÆ:\n1.DEC; 2.HEX; 3.BIN; 4.OCT; 5.È¡Öµ·¶Î§.\n");
+	printf("è¯·é€‰æ‹©è¿›åˆ¶:\n1.DEC; 2.HEX; 3.BIN; 4.OCT; 5.å–å€¼èŒƒå›´.\n");
 	scanf_s("%d", &index);
 
 	switch (index)
@@ -160,8 +159,8 @@ int main(void)
 	case(2):hex_input(); break;
 	case(3):bin_input(); break;
 	case(4):oct_input(); break;
-	case(5):printf("È¡Öµ·¶Î§[0,%lld].\n", max); break;
-	default:printf("ÊäÈë´íÎó.\n"); break;
+	case(5):printf("å–å€¼èŒƒå›´[0,%lld].\n", max); break;
+	default:printf("è¾“å…¥é”™è¯¯.\n"); break;
 	}
 
 	system("pause");
