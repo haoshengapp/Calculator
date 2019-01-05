@@ -2,8 +2,8 @@
 #include <math.h>
 #include <windows.h>
 #include <string.h>
-const long long max = 9223372036854775807;//2^63 - 1
-long long x;
+const long long max = 9223372036854775807;//上限:2^63 - 1
+long long x = 0;
 
 int bin_input(void)
 {
@@ -13,36 +13,19 @@ int bin_input(void)
 
 	printf("[BIN]\n");
 	scanf_s("%s", str, 65);
-	if (strlen(str) == 64 && str[0] == 1)
+	printf("strlen(str)=%d\n",strlen(str));
+
+	for (i = 0; i < strlen(str); i++)
 	{
-		for (i = 0; i < 64; i++)
+		a[i] = (int)(str[i] - '0');//char转int
+		if (a[i] == 0 || a[i] == 1)//检查语法错误
 		{
-			a[i] = (int)(str[i] - '0');//char转int
-			if (a[i] == 0 || a[i] == 1)
-			{
-				a[i] = 1 - a[i];//取反
-				x = 2 * x + a[i];
-			}
-			else
-			{
-				printf("语法错误.\n");
-				return 0;
-			}
+			x = 2 * x + a[i];//转十进制
 		}
-		x = x - 1 - max;//x -= 2^63
-	}
-	else 
-	{
-		for (i = 0; i < strlen(str); i++)
+		else
 		{
-			a[i] = (int)(str[i] - '0');
-			if (a[i] == 0 || a[i] == 1)
-				x = 2 * x + a[i];
-			else
-			{
-				printf("语法错误.\n");
-				return 0;
-			}
+			printf("语法错误.\n");
+			return 0;
 		}
 	}
 
@@ -62,8 +45,8 @@ int bin_output(void)
 	{
 		if (x < 0)
 		{
-			x = x + max + 1;
-			a[3][3] += 1000;
+			x = x + max + 1;//x + 2^63
+			a[3][3] = 1000;//最高位是1
 		}
 
 		for (i = 0; x > 0; i++)
@@ -73,7 +56,7 @@ int bin_output(void)
 				iota = x % 16;
 				switch (iota)
 				{
-				case(1):a[i][j] += 1; break;
+				case(1):a[i][j]++; break;
 				case(2):a[i][j] += 10; break;
 				case(3):a[i][j] += 11; break;
 				case(4):a[i][j] += 100; break;
@@ -97,7 +80,7 @@ int bin_output(void)
 
 	for (i = 3; i > -1; i--)
 	{
-		for (j = 3; j > -1; j--)
+		for (j = 3; j > -1; j--)//a[i][j]
 			printf("%4.4d ", a[i][j]);//空格
 		printf("\n");
 	}
@@ -109,6 +92,7 @@ int dec_input(void)
 {
 	printf("[DEC]\n");
 	scanf_s("%lld", &x);
+
 	printf("[HEX]\n0x%16.16llX\n", x);
 	printf("[OCT]\n0%llo\n", x);
 
@@ -150,7 +134,7 @@ int main(void)
 {
 	int index;
 
-	printf("请选择进制:\n1.DEC; 2.HEX; 3.BIN; 4.OCT; 5.取值范围.\n");
+	printf("请选择进制:\n1.DEC; 2.HEX; 3.BIN; 4.OCT.\n");
 	scanf_s("%d", &index);
 
 	switch (index)
@@ -159,7 +143,6 @@ int main(void)
 	case(2):hex_input(); break;
 	case(3):bin_input(); break;
 	case(4):oct_input(); break;
-	case(5):printf("取值范围[0,%lld].\n", max); break;
 	default:printf("输入错误.\n"); break;
 	}
 
