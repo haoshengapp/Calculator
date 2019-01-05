@@ -5,10 +5,10 @@
 #include <conio.h>
 #define NR(x) (sizeof(x)/sizeof(x[0]+0))
 #define TITLE "Calculator"
-#define AUTHOR "×÷Õß:¿¨²¼ÆæÅµ"
-#define DATE "ÈÕÆÚ:2018Äê11ÔÂ24ÈÕ"
+#define AUTHOR "ä½œè€…:å¡å¸ƒå¥‡è¯º"
+#define DATE "æ—¥æœŸ:2019å¹´1æœˆ6æ—¥"
 
-//¶¨ÒåÃ¶¾ÙKeyboardµÄ¼üÖµÊı¾İ
+//å®šä¹‰æšä¸¾Keyboardçš„é”®å€¼æ•°æ®
 enum
 {
 	UP = 72,
@@ -19,35 +19,35 @@ enum
 	ESC = 27,
 };
 
-//¶¨ÒåÒªÏÔÊ¾µÄ²Ëµ¥
+//å®šä¹‰è¦æ˜¾ç¤ºçš„èœå•
 char *menu[] =
 {
-	(char*)"*Ò»Ôª¶ş´Î·½³Ì*",
-	(char*)"*Ò»ÔªÈı´Î·½³Ì*",
-	(char*)"*Ò»Ôª¶ş´Î²»µÈÊ½(¿ªÇø¼ä)*",
-	(char*)"*Ò»Ôª¶ş´Î²»µÈÊ½(±ÕÇø¼ä)*",
-	(char*)"*»ù±¾²»µÈÊ½*",
-	(char*)"*ĞÄĞÎµãÕó*",
-	(char*)"*½øÖÆ×ª»»*",
-	(char*)"*ÖÊÊı*",
-	(char*)"*¹´¹ÉÊı×é*",
-	(char*)"*ÍË³ö*\n\n"
+	(char*)"*ä¸€å…ƒäºŒæ¬¡æ–¹ç¨‹*",
+	(char*)"*ä¸€å…ƒä¸‰æ¬¡æ–¹ç¨‹*",
+	(char*)"*ä¸€å…ƒäºŒæ¬¡ä¸ç­‰å¼(å¼€åŒºé—´)*",
+	(char*)"*ä¸€å…ƒäºŒæ¬¡ä¸ç­‰å¼(é—­åŒºé—´)*",
+	(char*)"*åŸºæœ¬ä¸ç­‰å¼*",
+	(char*)"*å¿ƒå½¢ç‚¹é˜µ*",
+	(char*)"*è¿›åˆ¶è½¬æ¢*",
+	(char*)"*è´¨æ•°*",
+	(char*)"*å‹¾è‚¡æ•°ç»„*",
+	(char*)"*é€€å‡º*\n\n"
 };
 
-//¶¨Òå½á¹¹Ìå
+//å®šä¹‰ç»“æ„ä½“
 CONSOLE_CURSOR_INFO cci;
-//¶¨ÒåÄ¬ÈÏµÄ×ø±êÎ»ÖÃ
+//å®šä¹‰é»˜è®¤çš„åæ ‡ä½ç½®
 COORD pos = { 0,0 };
 
-//ÏÔÊ¾²Ëµ¥
+//æ˜¾ç¤ºèœå•
 void showmenu(HANDLE hOut, char **menu, int size, int index)
 {
 	int i;
-	system("cls");	//ÉèÖÃÏÔÊ¾µÄÎÄ±¾µÄÑÕÉ« 
-	SetConsoleTextAttribute(hOut, FOREGROUND_GREEN | 0x8);	//³õÊ¼»¯¿ØÖÆÌ¨ÏÔÊ¾µÄX,YÖáµÄ×ø±ê
+	system("cls");	//è®¾ç½®æ˜¾ç¤ºçš„æ–‡æœ¬çš„é¢œè‰² 
+	SetConsoleTextAttribute(hOut, FOREGROUND_GREEN | 0x8);	//åˆå§‹åŒ–æ§åˆ¶å°æ˜¾ç¤ºçš„X,Yè½´çš„åæ ‡
 	pos.X = 10;
-	pos.Y = 0;	//ÉèÖÃÏÔÊ¾µ½¿ØÖÆÌ¨ÖÕ¶ËµÄ¾ßÌåÎ»ÖÃ 
-	SetConsoleCursorPosition(hOut, pos);	//µ÷ÓÃprintfÔÚ¿ØÖÆÌ¨¶ÔÓ¦µÄÎ»ÖÃÉÏÊä³ö 
+	pos.Y = 0;	//è®¾ç½®æ˜¾ç¤ºåˆ°æ§åˆ¶å°ç»ˆç«¯çš„å…·ä½“ä½ç½® 
+	SetConsoleCursorPosition(hOut, pos);	//è°ƒç”¨printfåœ¨æ§åˆ¶å°å¯¹åº”çš„ä½ç½®ä¸Šè¾“å‡º 
 	printf("%s", TITLE);
 
 	pos.X = 10;
@@ -62,34 +62,34 @@ void showmenu(HANDLE hOut, char **menu, int size, int index)
 
 	for (i = 0; i < size; i++)
 	{
-		//Èç¹ûi==index±íÊ¾ÔÚµ±Ç°Ñ¡ÏîµÄÎ»ÖÃ£¬Ä¬ÈÏ³õÊ¼»¯ÏÔÊ¾ÊÇµÚÒ»Ïî£¬ÏÔÊ¾ÎªºìÉ«
+		//å¦‚æœi==indexè¡¨ç¤ºåœ¨å½“å‰é€‰é¡¹çš„ä½ç½®ï¼Œé»˜è®¤åˆå§‹åŒ–æ˜¾ç¤ºæ˜¯ç¬¬ä¸€é¡¹ï¼Œæ˜¾ç¤ºä¸ºçº¢è‰²
 		if (i == index)
 		{
 			SetConsoleTextAttribute(hOut, FOREGROUND_RED | 0x8);
 
 			pos.X = 8;
-			pos.Y = 5 + i;	//ÉèÖÃ¹â±ê×ø±ê
+			pos.Y = 5 + i;	//è®¾ç½®å…‰æ ‡åæ ‡
 			SetConsoleCursorPosition(hOut, pos);
 
 			printf("%s", menu[i]);
 		}
-		//·ñÔòÏÔÊ¾Îª°×É« 
+		//å¦åˆ™æ˜¾ç¤ºä¸ºç™½è‰² 
 		else
 		{
 			SetConsoleTextAttribute(hOut, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 
 			pos.X = 10;
-			pos.Y = 5 + i;	//ÉèÖÃ¹â±ê×ø±ê
+			pos.Y = 5 + i;	//è®¾ç½®å…‰æ ‡åæ ‡
 			SetConsoleCursorPosition(hOut, pos);
 
 			printf("%s", menu[i]);
 		}
 	}
-	//Ë¢ĞÂ±ê×¼Êä³ö»º³åÇø 
+	//åˆ·æ–°æ ‡å‡†è¾“å‡ºç¼“å†²åŒº 
 	fflush(stdout);
 }
 
-//»ñÈ¡ÓÃ»§ÊäÈëµÄ½Ó¿Ú 
+//è·å–ç”¨æˆ·è¾“å…¥çš„æ¥å£ 
 int get_userinput(int *index, int size)
 {
 	int ch = _getch();
@@ -99,33 +99,33 @@ int get_userinput(int *index, int size)
 	case UP:
 		if (*index > 0)
 			*index -= 1;
-		break;//¹â±êÏòÉÏÒÆ¶¯ 
+		break;//å…‰æ ‡å‘ä¸Šç§»åŠ¨ 
 	case DOWN:
 		if (*index < size)
 			*index += 1;
-		break; //ÏÂ
-	case LEFT:	return ESC;//×ó 
-	case RIGHT:	return ENTER;//ÓÒ 
-	case ENTER:	return ENTER;//»Ø³µ 
+		break; //ä¸‹
+	case LEFT:	return ESC;//å·¦ 
+	case RIGHT:	return ENTER;//å³ 
+	case ENTER:	return ENTER;//å›è½¦ 
 	case ESC:	return ESC;//ESC
 	}
 	return 0;
 }
 
-int f1(void)//Ò»Ôª¶ş´Î·½³Ì
+int f1(void)//ä¸€å…ƒäºŒæ¬¡æ–¹ç¨‹
 {
 	double a, b, c, x1, x2;
 	char ch;
 
-	printf("ÇëÊäÈë¶ş´ÎÏîÏµÊı:\n");
+	printf("è¯·è¾“å…¥äºŒæ¬¡é¡¹ç³»æ•°:\n");
 	scanf_s("%lf", &a);
 	while ((ch = getchar()) != '\n')
 		continue;
-	printf("ÇëÊäÈëÒ»´ÎÏîÏµÊı:\n");
+	printf("è¯·è¾“å…¥ä¸€æ¬¡é¡¹ç³»æ•°:\n");
 	scanf_s("%lf", &b);
 	while ((ch = getchar()) != '\n')
 		continue;
-	printf("ÇëÊäÈë³£ÊıÏî:\n");
+	printf("è¯·è¾“å…¥å¸¸æ•°é¡¹:\n");
 	scanf_s("%lf", &c);
 	while ((ch = getchar()) != '\n')
 		continue;
@@ -140,11 +140,11 @@ int f1(void)//Ò»Ôª¶ş´Î·½³Ì
 		}
 		else if (c != 0)
 		{
-			printf("ÎŞ½â.\n");
+			printf("æ— è§£.\n");
 		}
 		else
 		{
-			printf("ÈÎÒâ¸´Êı.\n");
+			printf("ä»»æ„å¤æ•°.\n");
 		}
 	}
 
@@ -168,7 +168,7 @@ int f1(void)//Ò»Ôª¶ş´Î·½³Ì
 		{
 			x1 = -b / (2 * a);
 			x2 = sqrt(-delta) / (2 * a);
-			printf("x = %lf ¡À %lf * i,\n", x1, x2);
+			printf("x = %lf Â± %lf * i,\n", x1, x2);
 		}
 
 		double y = (4 * a * c - b * b) / (4 * a);
@@ -187,45 +187,45 @@ int f1(void)//Ò»Ôª¶ş´Î·½³Ì
 	return 0;
 }
 
-int f3(void)//Ò»Ôª¶ş´Î²»µÈÊ½(¿ªÇø¼ä)
+int f3(void)//ä¸€å…ƒäºŒæ¬¡ä¸ç­‰å¼(å¼€åŒºé—´)
 {
 	double a, b, c, x1, x2;
 	char ch;
 
-	printf("ÇëÊäÈë¶ş´ÎÏîÏµÊı:\n");
+	printf("è¯·è¾“å…¥äºŒæ¬¡é¡¹ç³»æ•°:\n");
 	scanf_s("%lf", &a);
 	while ((ch = getchar()) != '\n')
 		continue;
-	printf("ÇëÊäÈëÒ»´ÎÏîÏµÊı:\n");
+	printf("è¯·è¾“å…¥ä¸€æ¬¡é¡¹ç³»æ•°:\n");
 	scanf_s("%lf", &b);
 	while ((ch = getchar()) != '\n')
 		continue;
-	printf("ÇëÊäÈë³£ÊıÏî:\n");
+	printf("è¯·è¾“å…¥å¸¸æ•°é¡¹:\n");
 	scanf_s("%lf", &c);
 	while ((ch = getchar()) != '\n')
 		continue;
 	printf("***********************************\n");
-	printf("½â¼¯Îª ");
+	printf("è§£é›†ä¸º ");
 
 	if (a == 0)
 	{
 		if (b > 0)
 		{
 			x1 = -c / b;
-			printf("(%lf, +¡Ş).\n", x1);
+			printf("(%lf, +âˆ).\n", x1);
 		}
 		else if (b < 0)
 		{
 			x1 = -c / b;
-			printf("(-¡Ş, %lf).\n", x1);
+			printf("(-âˆ, %lf).\n", x1);
 		}
 		else if (c > 0)
 		{
-			printf("(-¡Ş, +¡Ş).\n");
+			printf("(-âˆ, +âˆ).\n");
 		}
 		else
 		{
-			printf("¿Õ¼¯.\n");
+			printf("ç©ºé›†.\n");
 		}
 	}
 
@@ -237,19 +237,19 @@ int f3(void)//Ò»Ôª¶ş´Î²»µÈÊ½(¿ªÇø¼ä)
 			if (delta == 0)
 			{
 				x1 = -b / (2 * a);
-				printf("(-¡Ş, %lf)¡È(%lf, +¡Ş).\n", x1, x1);
+				printf("(-âˆ, %lf)âˆª(%lf, +âˆ).\n", x1, x1);
 			}
 
 			else if (delta > 0)
 			{
 				x1 = (-b - sqrt(delta)) / (2 * a);
 				x2 = (-b + sqrt(delta)) / (2 * a);
-				printf("(-¡Ş, %lf)¡È(%lf, +¡Ş).\n", x1, x2);
+				printf("(-âˆ, %lf)âˆª(%lf, +âˆ).\n", x1, x2);
 			}
 
 			else
 			{
-				printf("(-¡Ş, +¡Ş).\n");
+				printf("(-âˆ, +âˆ).\n");
 			}
 		}
 
@@ -264,7 +264,7 @@ int f3(void)//Ò»Ôª¶ş´Î²»µÈÊ½(¿ªÇø¼ä)
 
 			else
 			{
-				printf("¿Õ¼¯.");
+				printf("ç©ºé›†.");
 
 			}
 		}
@@ -273,45 +273,45 @@ int f3(void)//Ò»Ôª¶ş´Î²»µÈÊ½(¿ªÇø¼ä)
 	return 0;
 }
 
-int f4(void)//Ò»Ôª¶ş´Î²»µÈÊ½(±ÕÇø¼ä)
+int f4(void)//ä¸€å…ƒäºŒæ¬¡ä¸ç­‰å¼(é—­åŒºé—´)
 {
 	double a, b, c, x1, x2;
 	char ch;
 
-	printf("ÇëÊäÈë¶ş´ÎÏîÏµÊı:\n");
+	printf("è¯·è¾“å…¥äºŒæ¬¡é¡¹ç³»æ•°:\n");
 	scanf_s("%lf", &a);
 	while ((ch = getchar()) != '\n')
 		continue;
-	printf("ÇëÊäÈëÒ»´ÎÏîÏµÊı:\n");
+	printf("è¯·è¾“å…¥ä¸€æ¬¡é¡¹ç³»æ•°:\n");
 	scanf_s("%lf", &b);
 	while ((ch = getchar()) != '\n')
 		continue;
-	printf("ÇëÊäÈë³£ÊıÏî:\n");
+	printf("è¯·è¾“å…¥å¸¸æ•°é¡¹:\n");
 	scanf_s("%lf", &c);
 	while ((ch = getchar()) != '\n')
 		continue;
 	printf("***********************************\n");
-	printf("½â¼¯Îª ");
+	printf("è§£é›†ä¸º ");
 
 	if (a == 0)
 	{
 		if (b > 0)
 		{
 			x1 = -c / b;
-			printf("[%lf, +¡Ş).\n", x1);
+			printf("[%lf, +âˆ).\n", x1);
 		}
 		else if (b < 0)
 		{
 			x1 = -c / b;
-			printf("(-¡Ş, %lf]).\n", x1);
+			printf("(-âˆ, %lf]).\n", x1);
 		}
 		else if (c >= 0)
 		{
-			printf("(-¡Ş, +¡Ş).\n");
+			printf("(-âˆ, +âˆ).\n");
 		}
 		else
 		{
-			printf("¿Õ¼¯.\n");
+			printf("ç©ºé›†.\n");
 		}
 	}
 
@@ -324,11 +324,11 @@ int f4(void)//Ò»Ôª¶ş´Î²»µÈÊ½(±ÕÇø¼ä)
 			{
 				x1 = (-b + sqrt(delta)) / (2 * a);
 				x2 = (-b - sqrt(delta)) / (2 * a);
-				printf("(-¡Ş, %lf]¡È[%lf, +¡Ş).\n", x2, x1);
+				printf("(-âˆ, %lf]âˆª[%lf, +âˆ).\n", x2, x1);
 			}
 			else
 			{
-				printf("(-¡Ş, +¡Ş).\n");
+				printf("(-âˆ, +âˆ).\n");
 			}
 		}
 		else
@@ -346,7 +346,7 @@ int f4(void)//Ò»Ôª¶ş´Î²»µÈÊ½(±ÕÇø¼ä)
 			}
 			else
 			{
-				printf("¿Õ¼¯.\n");
+				printf("ç©ºé›†.\n");
 			}
 		}
 	}
@@ -354,7 +354,7 @@ int f4(void)//Ò»Ôª¶ş´Î²»µÈÊ½(±ÕÇø¼ä)
 	return 0;
 }
 
-int f6(void)//ĞÄĞÎµãÕó
+int f6(void)//å¿ƒå½¢ç‚¹é˜µ
 {
 	double x, y;
 
@@ -383,13 +383,13 @@ int f6(void)//ĞÄĞÎµãÕó
 int main()
 {
 	int index = 0;
-	// »ñÈ¡µ±Ç°µÄ¾ä±ú-- - ÉèÖÃÎª±ê×¼Êä³ö¾ä±ú
+	// è·å–å½“å‰çš„å¥æŸ„-- - è®¾ç½®ä¸ºæ ‡å‡†è¾“å‡ºå¥æŸ„
 	HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTitleA(TITLE);
-	GetConsoleCursorInfo(hOut, &cci);		//»ñÈ¡¹â±êĞÅÏ¢
-	cci.dwSize = 1;							//ÉèÖÃ¹â±ê´óĞ¡
-	cci.bVisible = 0;						//ÉèÖÃ¹â±ê²»¿É¼û FALSE
-	SetConsoleCursorInfo(hOut, &cci);		//ÉèÖÃ(Ó¦ÓÃ)¹â±êĞÅÏ¢
+	GetConsoleCursorInfo(hOut, &cci);		//è·å–å…‰æ ‡ä¿¡æ¯
+	cci.dwSize = 1;							//è®¾ç½®å…‰æ ‡å¤§å°
+	cci.bVisible = 0;						//è®¾ç½®å…‰æ ‡ä¸å¯è§ FALSE
+	SetConsoleCursorInfo(hOut, &cci);		//è®¾ç½®(åº”ç”¨)å…‰æ ‡ä¿¡æ¯
 
 	while (1)
 	{
@@ -401,16 +401,16 @@ int main()
 		{
 			switch (index)
 			{
-			case 0:f1(); break;						//Ò»Ôª¶ş´Î·½³Ì
-			case 1:system("Ò»ÔªÈı´Î·½³Ì"); break;	//Ò»ÔªÈı´Î·½³Ì
-			case 2:f3(); break;						//Ò»Ôª¶ş´Î²»µÈÊ½1
-			case 3:f4(); break;						//Ò»Ôª¶ş´Î²»µÈÊ½2
-			case 4:system("»ù±¾²»µÈÊ½.exe"); break;	//»ù±¾²»µÈÊ½
-			case 5:f6(); break;						//ĞÄĞÎµãÕó
-			case 6:system("½øÖÆ×ª»».exe"); break;	//½øÖÆ×ª»»
-			case 7:system("ÖÊÊı.exe"); break;		//ÖÊÊı
-			case 8:system("¹´¹ÉÊı×é.exe"); break;	//¹´¹ÉÊı×é
-			case 9:return 0;						//ÍË³ö
+			case 0:f1(); break;						//ä¸€å…ƒäºŒæ¬¡æ–¹ç¨‹
+			case 1:system("ä¸€å…ƒä¸‰æ¬¡æ–¹ç¨‹"); break;	//ä¸€å…ƒä¸‰æ¬¡æ–¹ç¨‹
+			case 2:f3(); break;						//ä¸€å…ƒäºŒæ¬¡ä¸ç­‰å¼1
+			case 3:f4(); break;						//ä¸€å…ƒäºŒæ¬¡ä¸ç­‰å¼2
+			case 4:system("åŸºæœ¬ä¸ç­‰å¼.exe"); break;	//åŸºæœ¬ä¸ç­‰å¼
+			case 5:f6(); break;						//å¿ƒå½¢ç‚¹é˜µ
+			case 6:system("è¿›åˆ¶è½¬æ¢.exe"); break;	//è¿›åˆ¶è½¬æ¢
+			case 7:system("è´¨æ•°.exe"); break;		//è´¨æ•°
+			case 8:system("å‹¾è‚¡æ•°ç»„.exe"); break;	//å‹¾è‚¡æ•°ç»„
+			case 9:return 0;						//é€€å‡º
 			}
 		}
 	}
