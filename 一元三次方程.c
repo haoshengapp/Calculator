@@ -1,91 +1,77 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
-double x[3];
-double root[3];
+double alpha[3][3] = { 0 };
 
-int sum_product(double a, double b)//a = x1 + x2; b = x1 * x2
+int vieta(double p, double q)//p = x1 + x2; q = x1 * x2
 {
-	//ÓÃÎ¤´ï¶¨Àí½â·½³Ì x^2 - ax + b = 0
-	double delta = a * a - 4 * b;
+	//éŸ¦è¾¾å®šç†è§£æ–¹ç¨‹ x^2 - px + q = 0
+	double delta = p * p - 4 * q;
 
 	if (delta < 0)
 	{
-		x[1] = a / 2;
-		x[2] = sqrt(-delta) / 2;
-		printf("x2 = %lf + %lf i.\n", x[1], x[2]);
-		printf("x3 = %lf - %lf i.\n", x[1], x[2]);
+		alpha[2][1] = p / 2;
+		alpha[2][2] = sqrt(-delta) / 2;
+		printf("x2 = %lf + %lf i.\n", alpha[2][1], alpha[2][2]);
+		printf("x3 = %lf - %lf i.\n", alpha[2][1], alpha[2][2]);
 	}
 	else
 	{
-		x[1] = (a + sqrt(delta)) / 2;
-		x[2] = (a - sqrt(delta)) / 2;
-		printf("x2 = %lf.\n", x[1]);
-		printf("x3 = %lf.\n", x[2]);
+		alpha[2][1] = (p + sqrt(delta)) / 2;
+		alpha[2][2] = (p - sqrt(delta)) / 2;
+		printf("x2 = %lf.\n", alpha[2][1]);
+		printf("x3 = %lf.\n", alpha[2][2]);
 	}
-	return 0;
-}
-
-int cube_root(double m, int n)
-{
-	if (m > 0)
-		root[n] = pow(m, 1.0 / 3);
-	else if (m == 0)
-		root[n] = 0;
-	else
-		root[n] = -pow(-m, 1.0 / 3);
-
 	return 0;
 }
 
 int main(void)
 {
-	double coef[4];
 	double p, q, r, delta, theta;
-	printf("½â·½³Ì:ax^3 + bx^2 + cx + d = 0\n");
-	printf("ÇëÊäÈëÈı´ÎÏîÏµÊı:\n");
-	scanf_s("%lf", &coef[0]);
-	printf("ÇëÊäÈë¶ş´ÎÏîÏµÊı:\n");
-	scanf_s("%lf", &coef[1]);
-	printf("ÇëÊäÈëÒ»´ÎÏîÏµÊı:\n");
-	scanf_s("%lf", &coef[2]);
-	printf("ÇëÊäÈë³£ÊıÏî:\n");
-	scanf_s("%lf", &coef[3]);
+	printf("è§£æ–¹ç¨‹:ax^3 + bx^2 + cx + d = 0\n");
+	printf("è¯·è¾“å…¥ä¸‰æ¬¡é¡¹ç³»æ•°:\n");
+	scanf("%lf", &alpha[0][0]);
+	printf("è¯·è¾“å…¥äºŒæ¬¡é¡¹ç³»æ•°:\n");
+	scanf("%lf", &alpha[0][1]);
+	printf("è¯·è¾“å…¥ä¸€æ¬¡é¡¹ç³»æ•°:\n");
+	scanf("%lf", &alpha[0][2]);
+	printf("è¯·è¾“å…¥å¸¸æ•°é¡¹:\n");
+	scanf("%lf", &alpha[1][0]);
 
-
-	if (coef[0] != 0)//ÅĞ¶ÏÊÇ·ñÎªÒ»ÔªÈı´Î·½³Ì
+	if (alpha[0][0] != 0)//åˆ¤æ–­ä¸€å…ƒä¸‰æ¬¡æ–¹ç¨‹
 	{
-		//·½³Ì»¯Îª x^3 + ax^2 + bx + c = 0
-		coef[1] /= coef[0];
-		coef[2] /= coef[0];
-		coef[3] /= coef[0];
+		/*è½¬åŒ–x^3 + b'x^2 + c'x + d' = 0*/
+		alpha[0][1] /= alpha[0][0];
+		alpha[0][2] /= alpha[0][0];
+		alpha[1][0] /= alpha[0][0];
 
-		p = coef[2] - coef[1] * coef[1] / 3;//·½³Ì»¯Îª x^3 +px + q = 0
-		q = coef[3] + coef[1] * (2 * coef[1] * coef[1] - 9 * coef[2]) / 27;
+		/*è½¬åŒ–x^3 + px + q = 0*/
+		p = alpha[0][2] - alpha[0][1] * alpha[0][1] / 3;
+		q = alpha[1][0] + alpha[0][1] * (2 * alpha[0][1] * alpha[0][1] - 9 * alpha[0][2]) / 27;
 
-		p /= 3;//´ËÊ±,p ´ú±í p(Ô­)/3
-		q /= 2;//´ËÊ±,q ´ú±í q(Ô­)/2
-		delta = q * q + p * p * p;//ÅĞ±ğÊ½ (p/3)^3 + (q/2)^2, 
+		/*åˆ¤åˆ«å¼ (p/3)^3 + (q/2)^2*/
+		p /= 3;
+		q /= 2;
+		delta = p * p * p + q * q;
 
-		if (delta < 0)
+		if (delta < 0)//ä¸‰ä¸ªä¸ç­‰å®æ ¹
 		{
 			r = sqrt(-p * p * p);
 			theta = acos(-q / r) / 3;
-			cube_root(r, 0);
-			x[0] = 2 * root[0] * cos(theta) - coef[1] / 3;
+			alpha[2][0] = 2 * cbrt(r) * cos(theta) - alpha[0][1] / 3;
 		}
 		else
 		{
-			root[0] = sqrt(delta);
-			cube_root(-q + root[0], 1);
-			cube_root(-q - root[0], 2);
-			x[0] = root[1] + root[2] - coef[1] / 3;//¿¨¶ûµ¤¹«Ê½
+			alpha[1][1] = cbrt(-q + sqrt(delta));
+			alpha[1][2] = cbrt(-q - sqrt(delta));
+			alpha[2][0] = alpha[1][1] + alpha[1][2] - alpha[0][1] / 3;//å¡å°”ä¸¹å…¬å¼
 		}
-		printf("x1 = %lf.\n", x[0]);
-		sum_product(-coef[1] - x[0], coef[2] + x[0] * (x[0] + coef[1]));
+		printf("x1 = %lf.\n", alpha[2][0]);
+		//(x-x1)*(x-x2)*(x-x3) = x^3 - (x1+x2+x3)x^2 + (x1*x2 + x1*x3 + x2*x3)x - x1*x2*x3
+		vieta(-alpha[0][1] - alpha[2][0], alpha[0][2] + alpha[2][0] * (alpha[2][0] + alpha[0][1]));
 	}
 	else
-		printf("·ÇÒ»ÔªÈı´Î·½³Ì.\n");
+		printf("éä¸€å…ƒä¸‰æ¬¡æ–¹ç¨‹.\n");
 
 	system("pause");
 	return 0;
