@@ -13,7 +13,6 @@ int bin_input(void)
 
 	printf("[BIN]\n");
 	scanf_s("%s", str, 65);
-	printf("strlen(str)=%d\n",strlen(str));
 
 	for (i = 0; i < strlen(str); i++)
 	{
