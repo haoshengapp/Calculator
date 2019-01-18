@@ -27,4 +27,9 @@ int quit(void)//ÍË³ö
 	}
 }
 
+void asterisks(void)
+{
+	puts("*******************************");
+}
+
 #endif
