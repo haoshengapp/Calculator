@@ -2,7 +2,7 @@
 #include <math.h>
 #include <windows.h>
 #include <string.h>
-const long long max = 9223372036854775807;//上限:2^63 - 1
+#include <limits.h>
 long long x = 0;
 
 int bin_input(void)
@@ -29,8 +29,8 @@ int bin_input(void)
 	}
 
 	printf("[DEC]\n%lld\n", x);
-	printf("[HEX]\n0x%16.16llX\n", x);
-	printf("[OCT]\n0%llo\n", x);
+	printf("[HEX]\n%#16.16llX\n", x);
+	printf("[OCT]\n%#llo\n", x);
 
 	return 0;
 }
@@ -44,7 +44,7 @@ int bin_output(void)
 	{
 		if (x < 0)//处理负数
 		{
-			x = x + max + 1;//x + 2^63
+			x = x + _I64_MAX + 1;//x + 2^63
 			a[3][3] = 1000;//最高位是1
 		}
 
@@ -92,8 +92,8 @@ int dec_input(void)
 	printf("[DEC]\n");
 	scanf_s("%lld", &x);
 
-	printf("[HEX]\n0x%16.16llX\n", x);
-	printf("[OCT]\n0%llo\n", x);
+	printf("[HEX]\n%#16.16llX\n", x);
+	printf("[OCT]\n%#llo\n", x);
 
 	printf("[BIN]\n");
 	bin_output();
@@ -107,7 +107,7 @@ int hex_input(void)
 	scanf_s("%llx", &x);
 
 	printf("[DEC]\n%lld\n", x);
-	printf("[OCT]\n0%llo\n", x);
+	printf("[OCT]\n%#llo\n", x);
 
 	printf("[BIN]\n");
 	bin_output();
@@ -121,7 +121,7 @@ int oct_input(void)
 	scanf_s("%llo", &x);
 
 	printf("[DEC]\n%lld\n", x);
-	printf("[HEX]\n0x%16.16llX\n", x);
+	printf("[HEX]\n%#16.16llX\n", x);
 
 	printf("[BIN]\n");
 	bin_output();
@@ -146,5 +146,6 @@ int main(void)
 	}
 
 	system("pause");
+
 	return 0;
 }
