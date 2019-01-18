@@ -2,7 +2,7 @@
 #include <math.h>
 #include <windows.h>
 #include <string.h>
-const long long max = 9223372036854775807;//ä¸Šé™:2^63 - 1
+const long long max = 9223372036854775807;//ÉÏÏŞ:2^63 - 1
 long long x = 0;
 
 int bin_input(void)
@@ -16,14 +16,14 @@ int bin_input(void)
 
 	for (i = 0; i < strlen(str); i++)
 	{
-		a[i] = (int)(str[i] - '0');//charè½¬int
-		if (a[i] == 0 || a[i] == 1)//æ£€æŸ¥è¯­æ³•é”™è¯¯
+		a[i] = (int)(str[i] - '0');//char×ªint
+		if (a[i] == 0 || a[i] == 1)//¼ì²éÓï·¨´íÎó
 		{
-			x = 2 * x + a[i];//è½¬åè¿›åˆ¶
+			x = 2 * x + a[i];//×ªÊ®½øÖÆ
 		}
 		else
 		{
-			printf("è¯­æ³•é”™è¯¯.\n");
+			printf("Óï·¨´íÎó.\n");
 			return 0;
 		}
 	}
@@ -42,10 +42,10 @@ int bin_output(void)
 
 	if (x != 0)
 	{
-		if (x < 0)
+		if (x < 0)//´¦Àí¸ºÊı
 		{
 			x = x + max + 1;//x + 2^63
-			a[3][3] = 1000;//æœ€é«˜ä½æ˜¯1
+			a[3][3] = 1000;//×î¸ßÎ»ÊÇ1
 		}
 
 		for (i = 0; x > 0; i++)
@@ -80,7 +80,7 @@ int bin_output(void)
 	for (i = 3; i > -1; i--)
 	{
 		for (j = 3; j > -1; j--)//a[i][j]
-			printf("%4.4d ", a[i][j]);//ç©ºæ ¼
+			printf("%4.4d ", a[i][j]);//¿Õ¸ñ
 		printf("\n");
 	}
 
@@ -133,7 +133,7 @@ int main(void)
 {
 	int index;
 
-	printf("è¯·é€‰æ‹©è¿›åˆ¶:\n1.DEC; 2.HEX; 3.BIN; 4.OCT.\n");
+	printf("ÇëÑ¡Ôñ½øÖÆ:\n1.DEC; 2.HEX; 3.BIN; 4.OCT.\n");
 	scanf_s("%d", &index);
 
 	switch (index)
@@ -142,7 +142,7 @@ int main(void)
 	case(2):hex_input(); break;
 	case(3):bin_input(); break;
 	case(4):oct_input(); break;
-	default:printf("è¾“å…¥é”™è¯¯.\n"); break;
+	default:printf("ÊäÈë´íÎó.\n"); break;
 	}
 
 	system("pause");
