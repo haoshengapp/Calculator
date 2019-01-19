@@ -5,10 +5,10 @@
 #include <conio.h>
 #define NR(x) (sizeof(x)/sizeof(x[0]+0))
 #define TITLE "Calculator"
-#define AUTHOR "×÷Õß:¿¨²¼ÆæÅµ"
-#define DATE "ÈÕÆÚ:2019Äê1ÔÂ19ÈÕ"
+#define AUTHOR "ä½œè€…:å¡å¸ƒå¥‡è¯º"
+#define DATE "æ—¥æœŸ:2019å¹´1æœˆ19æ—¥"
 
-//¶¨ÒåÃ¶¾ÙKeyboardµÄ¼üÖµÊı¾İ
+//å®šä¹‰æšä¸¾Keyboardçš„é”®å€¼æ•°æ®
 enum
 {
 	UP = 72,
@@ -19,33 +19,33 @@ enum
 	ESC = 27,
 };
 
-//¶¨ÒåÒªÏÔÊ¾µÄ²Ëµ¥
+//å®šä¹‰è¦æ˜¾ç¤ºçš„èœå•
 char *menu[] =
 {
-	(char*)"*¶ş´Îº¯Êı*",
-	(char*)"*Ò»ÔªÈı´Î·½³Ì*",
-	(char*)"*»ù±¾²»µÈÊ½*",
-	(char*)"*ĞÄĞÎµãÕó*",
-	(char*)"*½øÖÆ×ª»»*",
-	(char*)"*ÖÊÊı*",
-	(char*)"*¹´¹ÉÊı×é*",
-	(char*)"*ÍË³ö*\n\n"
+	(char*)"*äºŒæ¬¡å‡½æ•°*",
+	(char*)"*ä¸€å…ƒä¸‰æ¬¡æ–¹ç¨‹*",
+	(char*)"*åŸºæœ¬ä¸ç­‰å¼*",
+	(char*)"*å¿ƒå½¢ç‚¹é˜µ*",
+	(char*)"*è¿›åˆ¶è½¬æ¢*",
+	(char*)"*è´¨æ•°*",
+	(char*)"*å‹¾è‚¡æ•°ç»„*",
+	(char*)"*é€€å‡º*\n\n"
 };
 
-//¶¨Òå½á¹¹Ìå
+//å®šä¹‰ç»“æ„ä½“
 CONSOLE_CURSOR_INFO cci;
-//¶¨ÒåÄ¬ÈÏµÄ×ø±êÎ»ÖÃ
+//å®šä¹‰é»˜è®¤çš„åæ ‡ä½ç½®
 COORD pos = { 0,0 };
 
-//ÏÔÊ¾²Ëµ¥
+//æ˜¾ç¤ºèœå•
 void showmenu(HANDLE hOut, char **menu, int size, int index)
 {
 	int i;
-	system("cls");	//ÉèÖÃÏÔÊ¾µÄÎÄ±¾µÄÑÕÉ« 
-	SetConsoleTextAttribute(hOut, FOREGROUND_GREEN | 0x8);	//³õÊ¼»¯¿ØÖÆÌ¨ÏÔÊ¾µÄX,YÖáµÄ×ø±ê
+	system("cls");	//è®¾ç½®æ˜¾ç¤ºçš„æ–‡æœ¬çš„é¢œè‰² 
+	SetConsoleTextAttribute(hOut, FOREGROUND_GREEN | 0x8);	//åˆå§‹åŒ–æ§åˆ¶å°æ˜¾ç¤ºçš„X,Yè½´çš„åæ ‡
 	pos.X = 10;
-	pos.Y = 0;	//ÉèÖÃÏÔÊ¾µ½¿ØÖÆÌ¨ÖÕ¶ËµÄ¾ßÌåÎ»ÖÃ 
-	SetConsoleCursorPosition(hOut, pos);	//µ÷ÓÃprintfÔÚ¿ØÖÆÌ¨¶ÔÓ¦µÄÎ»ÖÃÉÏÊä³ö 
+	pos.Y = 0;	//è®¾ç½®æ˜¾ç¤ºåˆ°æ§åˆ¶å°ç»ˆç«¯çš„å…·ä½“ä½ç½® 
+	SetConsoleCursorPosition(hOut, pos);	//è°ƒç”¨printfåœ¨æ§åˆ¶å°å¯¹åº”çš„ä½ç½®ä¸Šè¾“å‡º 
 	printf("%s", TITLE);
 
 	pos.X = 10;
@@ -60,34 +60,34 @@ void showmenu(HANDLE hOut, char **menu, int size, int index)
 
 	for (i = 0; i < size; i++)
 	{
-		//Èç¹ûi==index±íÊ¾ÔÚµ±Ç°Ñ¡ÏîµÄÎ»ÖÃ£¬Ä¬ÈÏ³õÊ¼»¯ÏÔÊ¾ÊÇµÚÒ»Ïî£¬ÏÔÊ¾ÎªºìÉ«
+		//å¦‚æœi==indexè¡¨ç¤ºåœ¨å½“å‰é€‰é¡¹çš„ä½ç½®ï¼Œé»˜è®¤åˆå§‹åŒ–æ˜¾ç¤ºæ˜¯ç¬¬ä¸€é¡¹ï¼Œæ˜¾ç¤ºä¸ºçº¢è‰²
 		if (i == index)
 		{
 			SetConsoleTextAttribute(hOut, FOREGROUND_RED | 0x8);
 
 			pos.X = 8;
-			pos.Y = 5 + i;	//ÉèÖÃ¹â±ê×ø±ê
+			pos.Y = 5 + i;	//è®¾ç½®å…‰æ ‡åæ ‡
 			SetConsoleCursorPosition(hOut, pos);
 
 			printf("%s", menu[i]);
 		}
-		//·ñÔòÏÔÊ¾Îª°×É« 
+		//å¦åˆ™æ˜¾ç¤ºä¸ºç™½è‰² 
 		else
 		{
 			SetConsoleTextAttribute(hOut, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 
 			pos.X = 10;
-			pos.Y = 5 + i;	//ÉèÖÃ¹â±ê×ø±ê
+			pos.Y = 5 + i;	//è®¾ç½®å…‰æ ‡åæ ‡
 			SetConsoleCursorPosition(hOut, pos);
 
 			printf("%s", menu[i]);
 		}
 	}
-	//Ë¢ĞÂ±ê×¼Êä³ö»º³åÇø 
+	//åˆ·æ–°æ ‡å‡†è¾“å‡ºç¼“å†²åŒº 
 	fflush(stdout);
 }
 
-//»ñÈ¡ÓÃ»§ÊäÈëµÄ½Ó¿Ú 
+//è·å–ç”¨æˆ·è¾“å…¥çš„æ¥å£ 
 int get_userinput(int *index, int size)
 {
 	int ch = _getch();
@@ -97,20 +97,20 @@ int get_userinput(int *index, int size)
 	case UP:
 		if (*index > 0)
 			*index -= 1;
-		break;//¹â±êÏòÉÏÒÆ¶¯ 
+		break;//å…‰æ ‡å‘ä¸Šç§»åŠ¨ 
 	case DOWN:
 		if (*index < size)
 			*index += 1;
-		break; //ÏÂ
-	case LEFT:	return ESC;//×ó 
-	case RIGHT:	return ENTER;//ÓÒ 
-	case ENTER:	return ENTER;//»Ø³µ 
+		break; //ä¸‹
+	case LEFT:	return ESC;//å·¦ 
+	case RIGHT:	return ENTER;//å³ 
+	case ENTER:	return ENTER;//å›è½¦ 
 	case ESC:	return ESC;//ESC
 	}
 	return 0;
 }
 
-int heart(void)//ĞÄĞÎµãÕó
+int heart(void)//å¿ƒå½¢ç‚¹é˜µ
 {
 	double x, y;
 
@@ -139,13 +139,13 @@ int heart(void)//ĞÄĞÎµãÕó
 int main()
 {
 	int index = 0;
-	// »ñÈ¡µ±Ç°µÄ¾ä±ú-- - ÉèÖÃÎª±ê×¼Êä³ö¾ä±ú
+	// è·å–å½“å‰çš„å¥æŸ„-- - è®¾ç½®ä¸ºæ ‡å‡†è¾“å‡ºå¥æŸ„
 	HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTitleA(TITLE);
-	GetConsoleCursorInfo(hOut, &cci);		//»ñÈ¡¹â±êĞÅÏ¢
-	cci.dwSize = 1;							//ÉèÖÃ¹â±ê´óĞ¡
-	cci.bVisible = 0;						//ÉèÖÃ¹â±ê²»¿É¼û FALSE
-	SetConsoleCursorInfo(hOut, &cci);		//ÉèÖÃ(Ó¦ÓÃ)¹â±êĞÅÏ¢
+	GetConsoleCursorInfo(hOut, &cci);		//è·å–å…‰æ ‡ä¿¡æ¯
+	cci.dwSize = 1;					//è®¾ç½®å…‰æ ‡å¤§å°
+	cci.bVisible = 0;				//è®¾ç½®å…‰æ ‡ä¸å¯è§ FALSE
+	SetConsoleCursorInfo(hOut, &cci);		//è®¾ç½®(åº”ç”¨)å…‰æ ‡ä¿¡æ¯
 
 	while (1)
 	{
@@ -157,14 +157,14 @@ int main()
 		{
 			switch (index)
 			{
-			case 0:system("¶ş´Îº¯Êı.exe"); break;		//¶ş´Îº¯Êı
-			case 1:system("Ò»ÔªÈı´Î·½³Ì.exe"); break;	//Ò»ÔªÈı´Î·½³Ì
-			case 2:system("»ù±¾²»µÈÊ½.exe"); break;		//»ù±¾²»µÈÊ½
-			case 3:heart(); break;						//ĞÄĞÎµãÕó
-			case 4:system("½øÖÆ×ª»».exe"); break;		//½øÖÆ×ª»»
-			case 5:system("ÖÊÊı.exe"); break;			//ÖÊÊı
-			case 6:system("¹´¹ÉÊı×é.exe"); break;		//¹´¹ÉÊı×é
-			case 7:return 0;							//ÍË³ö
+			case 0:system("äºŒæ¬¡å‡½æ•°.exe"); break;
+			case 1:system("ä¸€å…ƒä¸‰æ¬¡æ–¹ç¨‹.exe"); break;
+			case 2:system("åŸºæœ¬ä¸ç­‰å¼.exe"); break;
+			case 3:heart(); break;//å¿ƒå½¢ç‚¹é˜µ
+			case 4:system("è¿›åˆ¶è½¬æ¢.exe"); break;
+			case 5:system("è´¨æ•°.exe"); break;
+			case 6:system("å‹¾è‚¡æ•°ç»„.exe"); break;
+			case 7:return 0;//é€€å‡º
 			}
 		}
 	}
