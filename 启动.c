@@ -110,18 +110,15 @@ int get_userinput(int *index, int size)
 	return 0;
 }
 
-int heart(void)//心形点阵
+void heart(void)//心形点阵
 {
 	double x, y;
 
-	for (y = 1.3; y > -1; y -= 0.1)
+	for (y = 1.3; y > -1.1; y -= 0.13)
 	{
-		for (x = 1.2; x > -1.2; x -= 0.05)
+		for (x = -1.2; x < 1.2; x += 0.06)
 		{
-			double P = x * x + y * y - 1;
-			double Q = x * x * y * y * y;
-
-			if (pow(P, 3) - Q < 0)
+			if (x * x + y * y - cbrt(x * x) * y < 1)
 			{
 				printf(".");
 			}
@@ -133,7 +130,6 @@ int heart(void)//心形点阵
 		printf("\n");
 	}
 	_getch();
-	return 0;
 }
 
 int main()
