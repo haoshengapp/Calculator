@@ -1,14 +1,11 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <windows.h>
-#include <math.h>
-#include <conio.h>
+#include "equation.h"
+#include "coffee.h"
 #define NR(x) (sizeof(x)/sizeof(x[0]+0))
 #define TITLE "Calculator"
-#define AUTHOR "ä½œè€…:å¡å¸ƒå¥‡è¯º"
-#define DATE "æ—¥æœŸ:2019å¹´1æœˆ19æ—¥"
+#define AUTHOR "×÷Õß:¿¨²¼ÆæÅµ"
+#define DATE "ÈÕÆÚ:2019Äê1ÔÂ19ÈÕ"
 
-//å®šä¹‰æšä¸¾Keyboardçš„é”®å€¼æ•°æ®
+//¶¨ÒåÃ¶¾ÙKeyboardµÄ¼üÖµÊı¾İ
 enum
 {
 	UP = 72,
@@ -19,33 +16,33 @@ enum
 	ESC = 27,
 };
 
-//å®šä¹‰è¦æ˜¾ç¤ºçš„èœå•
+//¶¨ÒåÒªÏÔÊ¾µÄ²Ëµ¥
 char *menu[] =
 {
-	(char*)"*äºŒæ¬¡å‡½æ•°*",
-	(char*)"*ä¸€å…ƒä¸‰æ¬¡æ–¹ç¨‹*",
-	(char*)"*åŸºæœ¬ä¸ç­‰å¼*",
-	(char*)"*å¿ƒå½¢ç‚¹é˜µ*",
-	(char*)"*è¿›åˆ¶è½¬æ¢*",
-	(char*)"*è´¨æ•°*",
-	(char*)"*å‹¾è‚¡æ•°ç»„*",
-	(char*)"*é€€å‡º*\n\n"
+	(char*)"*¶ş´Îº¯Êı*",
+	(char*)"*Ò»ÔªÈı´Î·½³Ì*",
+	(char*)"*»ù±¾²»µÈÊ½*",
+	(char*)"*ĞÄĞÎµãÕó*",
+	(char*)"*½øÖÆ×ª»»*",
+	(char*)"*ÖÊÊı*",
+	(char*)"*¹´¹ÉÊı×é*",
+	(char*)"*ÍË³ö*\n\n"
 };
 
-//å®šä¹‰ç»“æ„ä½“
+//¶¨Òå½á¹¹Ìå
 CONSOLE_CURSOR_INFO cci;
-//å®šä¹‰é»˜è®¤çš„åæ ‡ä½ç½®
+//¶¨ÒåÄ¬ÈÏµÄ×ø±êÎ»ÖÃ
 COORD pos = { 0,0 };
 
-//æ˜¾ç¤ºèœå•
+//ÏÔÊ¾²Ëµ¥
 void showmenu(HANDLE hOut, char **menu, int size, int index)
 {
 	int i;
-	system("cls");	//è®¾ç½®æ˜¾ç¤ºçš„æ–‡æœ¬çš„é¢œè‰² 
-	SetConsoleTextAttribute(hOut, FOREGROUND_GREEN | 0x8);	//åˆå§‹åŒ–æ§åˆ¶å°æ˜¾ç¤ºçš„X,Yè½´çš„åæ ‡
+	system("cls");	//ÉèÖÃÏÔÊ¾µÄÎÄ±¾µÄÑÕÉ« 
+	SetConsoleTextAttribute(hOut, FOREGROUND_GREEN | 0x8);	//³õÊ¼»¯¿ØÖÆÌ¨ÏÔÊ¾µÄX,YÖáµÄ×ø±ê
 	pos.X = 10;
-	pos.Y = 0;	//è®¾ç½®æ˜¾ç¤ºåˆ°æ§åˆ¶å°ç»ˆç«¯çš„å…·ä½“ä½ç½® 
-	SetConsoleCursorPosition(hOut, pos);	//è°ƒç”¨printfåœ¨æ§åˆ¶å°å¯¹åº”çš„ä½ç½®ä¸Šè¾“å‡º 
+	pos.Y = 0;	//ÉèÖÃÏÔÊ¾µ½¿ØÖÆÌ¨ÖÕ¶ËµÄ¾ßÌåÎ»ÖÃ 
+	SetConsoleCursorPosition(hOut, pos);	//µ÷ÓÃprintfÔÚ¿ØÖÆÌ¨¶ÔÓ¦µÄÎ»ÖÃÉÏÊä³ö 
 	printf("%s", TITLE);
 
 	pos.X = 10;
@@ -60,34 +57,34 @@ void showmenu(HANDLE hOut, char **menu, int size, int index)
 
 	for (i = 0; i < size; i++)
 	{
-		//å¦‚æœi==indexè¡¨ç¤ºåœ¨å½“å‰é€‰é¡¹çš„ä½ç½®ï¼Œé»˜è®¤åˆå§‹åŒ–æ˜¾ç¤ºæ˜¯ç¬¬ä¸€é¡¹ï¼Œæ˜¾ç¤ºä¸ºçº¢è‰²
+		//Èç¹ûi==index±íÊ¾ÔÚµ±Ç°Ñ¡ÏîµÄÎ»ÖÃ£¬Ä¬ÈÏ³õÊ¼»¯ÏÔÊ¾ÊÇµÚÒ»Ïî£¬ÏÔÊ¾ÎªºìÉ«
 		if (i == index)
 		{
 			SetConsoleTextAttribute(hOut, FOREGROUND_RED | 0x8);
 
 			pos.X = 8;
-			pos.Y = 5 + i;	//è®¾ç½®å…‰æ ‡åæ ‡
+			pos.Y = 5 + i;	//ÉèÖÃ¹â±ê×ø±ê
 			SetConsoleCursorPosition(hOut, pos);
 
 			printf("%s", menu[i]);
 		}
-		//å¦åˆ™æ˜¾ç¤ºä¸ºç™½è‰² 
+		//·ñÔòÏÔÊ¾Îª°×É« 
 		else
 		{
 			SetConsoleTextAttribute(hOut, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 
 			pos.X = 10;
-			pos.Y = 5 + i;	//è®¾ç½®å…‰æ ‡åæ ‡
+			pos.Y = 5 + i;	//ÉèÖÃ¹â±ê×ø±ê
 			SetConsoleCursorPosition(hOut, pos);
 
 			printf("%s", menu[i]);
 		}
 	}
-	//åˆ·æ–°æ ‡å‡†è¾“å‡ºç¼“å†²åŒº 
+	//Ë¢ĞÂ±ê×¼Êä³ö»º³åÇø 
 	fflush(stdout);
 }
 
-//è·å–ç”¨æˆ·è¾“å…¥çš„æ¥å£ 
+//»ñÈ¡ÓÃ»§ÊäÈëµÄ½Ó¿Ú 
 int get_userinput(int *index, int size)
 {
 	int ch = _getch();
@@ -97,20 +94,20 @@ int get_userinput(int *index, int size)
 	case UP:
 		if (*index > 0)
 			*index -= 1;
-		break;//å…‰æ ‡å‘ä¸Šç§»åŠ¨ 
+		break;//¹â±êÏòÉÏÒÆ¶¯ 
 	case DOWN:
 		if (*index < size)
 			*index += 1;
-		break; //ä¸‹
-	case LEFT:	return ESC;//å·¦ 
-	case RIGHT:	return ENTER;//å³ 
-	case ENTER:	return ENTER;//å›è½¦ 
+		break; //ÏÂ
+	case LEFT:	return ESC;//×ó 
+	case RIGHT:	return ENTER;//ÓÒ 
+	case ENTER:	return ENTER;//»Ø³µ 
 	case ESC:	return ESC;//ESC
 	}
 	return 0;
 }
 
-void heart(void)//å¿ƒå½¢ç‚¹é˜µ
+void heart(void)//ĞÄĞÎµãÕó
 {
 	double x, y;
 
@@ -135,13 +132,13 @@ void heart(void)//å¿ƒå½¢ç‚¹é˜µ
 int main()
 {
 	int index = 0;
-	// è·å–å½“å‰çš„å¥æŸ„-- - è®¾ç½®ä¸ºæ ‡å‡†è¾“å‡ºå¥æŸ„
+	// »ñÈ¡µ±Ç°µÄ¾ä±ú-- - ÉèÖÃÎª±ê×¼Êä³ö¾ä±ú
 	HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTitleA(TITLE);
-	GetConsoleCursorInfo(hOut, &cci);		//è·å–å…‰æ ‡ä¿¡æ¯
-	cci.dwSize = 1;					//è®¾ç½®å…‰æ ‡å¤§å°
-	cci.bVisible = 0;				//è®¾ç½®å…‰æ ‡ä¸å¯è§ FALSE
-	SetConsoleCursorInfo(hOut, &cci);		//è®¾ç½®(åº”ç”¨)å…‰æ ‡ä¿¡æ¯
+	GetConsoleCursorInfo(hOut, &cci);	//»ñÈ¡¹â±êĞÅÏ¢
+	cci.dwSize = 1;						//ÉèÖÃ¹â±ê´óĞ¡
+	cci.bVisible = 0;					//ÉèÖÃ¹â±ê²»¿É¼û FALSE
+	SetConsoleCursorInfo(hOut, &cci);	//ÉèÖÃ(Ó¦ÓÃ)¹â±êĞÅÏ¢
 
 	while (1)
 	{
@@ -153,14 +150,14 @@ int main()
 		{
 			switch (index)
 			{
-			case 0:system("äºŒæ¬¡å‡½æ•°.exe"); break;
-			case 1:system("ä¸€å…ƒä¸‰æ¬¡æ–¹ç¨‹.exe"); break;
-			case 2:system("åŸºæœ¬ä¸ç­‰å¼.exe"); break;
-			case 3:heart(); break;//å¿ƒå½¢ç‚¹é˜µ
-			case 4:system("è¿›åˆ¶è½¬æ¢.exe"); break;
-			case 5:system("è´¨æ•°.exe"); break;
-			case 6:system("å‹¾è‚¡æ•°ç»„.exe"); break;
-			case 7:return 0;//é€€å‡º
+			case 0:system("cls"); coffee_equation2(); break;
+			case 1:system("cls"); coffee_equation3(); break;
+			case 2:system("cls"); inequality(); break;
+			case 3:system("cls"); heart(); break;//ĞÄĞÎµãÕó
+			case 4:system("cls"); numeration(); break;
+			case 5:system("cls"); prime(); break;
+			case 6:system("cls"); triple(); break;
+			case 7:return 0;//ÍË³ö
 			}
 		}
 	}

@@ -1,8 +1,7 @@
 #include <stdio.h>
-#include <math.h>
-#include <windows.h>
 #include <string.h>
 #include <limits.h>
+int quit(void);
 long long x = 0;
 
 int bin_input(void)
@@ -129,23 +128,23 @@ int oct_input(void)
 	return 0;
 }
 
-int main(void)
+int numeration(void)
 {
 	int index;
-
-	printf("请选择进制:\n1.DEC; 2.HEX; 3.BIN; 4.OCT.\n");
-	scanf_s("%d", &index);
-
-	switch (index)
+	do
 	{
-	case(1):dec_input(); break;
-	case(2):hex_input(); break;
-	case(3):bin_input(); break;
-	case(4):oct_input(); break;
-	default:printf("输入错误.\n"); break;
-	}
+		printf("请选择进制:\n1.DEC; 2.HEX; 3.BIN; 4.OCT.\n");
+		scanf_s("%d", &index);
 
-	system("pause");
+		switch (index)
+		{
+		case(1):dec_input(); break;
+		case(2):hex_input(); break;
+		case(3):bin_input(); break;
+		case(4):oct_input(); break;
+		default:printf("输入错误.\n"); break;
+		}
+	} while (quit());
 
 	return 0;
 }
