@@ -1,4 +1,4 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include <conio.h>
@@ -10,7 +10,7 @@ int f5i(void)
 {
 	double m, n, p, s;
 
-	printf("ÇëÊäÈë\nm: ");
+	printf("è¯·è¾“å…¥\nm: ");
 	scanf_s("%lf", &m);
 	checkch();
 	printf("n: ");
@@ -31,7 +31,7 @@ int f5ii(void)
 {
 	double m, n, p, s;
 
-	printf("ÇëÊäÈë\nm: ");
+	printf("è¯·è¾“å…¥\nm: ");
 	scanf_s("%lf", &m);
 	checkch();
 	printf("n: ");
@@ -53,7 +53,7 @@ int inequality(void)
 
 	do
 	{
-		printf("1.ÒÑÖª(mx + ny),ÇóxyµÄÈ¡Öµ·¶Î§;\n2.ÒÑÖªxy,Çó(mx + ny)µÄÈ¡Öµ·¶Î§.\n");
+		printf("1.å·²çŸ¥(mx + ny),æ±‚xyçš„å–å€¼èŒƒå›´;\n2.å·²çŸ¥xy,æ±‚(mx + ny)çš„å–å€¼èŒƒå›´.\n");
 		scanf_s("%d", &index);
 		switch (index)
 		{

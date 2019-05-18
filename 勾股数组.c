@@ -1,4 +1,4 @@
-# include <stdio.h>
+ï»¿# include <stdio.h>
 # include <windows.h>
 int quit(void);
 
@@ -7,9 +7,9 @@ int triple(void)
 	int a, b, c, x, y, z, cnt0, cnt1;
 	do
 	{
-		printf("ÇëÊäÈëÊı×éÏÂÏŞ:");
+		printf("è¯·è¾“å…¥æ•°ç»„ä¸‹é™:");
 		scanf_s("%d", &cnt0);
-		printf("ÇëÊäÈëÊı×éÉÏÏŞ:");
+		printf("è¯·è¾“å…¥æ•°ç»„ä¸Šé™:");
 		scanf_s("%d", &cnt1);
 
 		x = cnt0 - 1;

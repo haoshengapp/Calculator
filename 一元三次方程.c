@@ -1,4 +1,4 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 void checkch(void);
 int quit(void);
 int vieta(double p, double q, int no1, int no2);
@@ -10,19 +10,19 @@ double coffee_equation3(void)
 	{
 		double a, b, c, d, x;
 		printf("ax^3 + bx^2 + cx + d = 0\n");
-		printf("ÇëÊäÈëa:\n");
+		printf("è¯·è¾“å…¥a:\n");
 		scanf_s("%lf", &a);
 		checkch();
 
-		if (a != 0)//ÅĞ¶ÏÒ»ÔªÈı´Î·½³Ì
+		if (a != 0)//åˆ¤æ–­ä¸€å…ƒä¸‰æ¬¡æ–¹ç¨‹
 		{
-			printf("ÇëÊäÈëb:\n");
+			printf("è¯·è¾“å…¥b:\n");
 			scanf_s("%lf", &b);
 			checkch();
-			printf("ÇëÊäÈëc:\n");
+			printf("è¯·è¾“å…¥c:\n");
 			scanf_s("%lf", &c);
 			checkch();
-			printf("ÇëÊäÈëd:\n");
+			printf("è¯·è¾“å…¥d:\n");
 			scanf_s("%lf", &d);
 			checkch();
 
@@ -33,7 +33,7 @@ double coffee_equation3(void)
 			vieta(-b / a - x, c / a + x * (x + b / a), 2, 3);
 		}
 		else
-			printf("·ÇÒ»ÔªÈı´Î·½³Ì.\n");
+			printf("éä¸€å…ƒä¸‰æ¬¡æ–¹ç¨‹.\n");
 	} while (quit());
 
 	return 0;

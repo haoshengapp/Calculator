@@ -1,4 +1,4 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 #include <stdlib.h>
 void checkch(void);
 int quit(void);
@@ -10,7 +10,7 @@ int coffee_equation2(void)
 {
 	int choice;
 
-	printf("1.Ò»Ôª¶ş´Î·½³Ì;\n2.Ò»Ôª¶ş´Î²»µÈÊ½.\n");
+	printf("1.ä¸€å…ƒäºŒæ¬¡æ–¹ç¨‹;\n2.ä¸€å…ƒäºŒæ¬¡ä¸ç­‰å¼.\n");
 	scanf_s("%d", &choice);
 	checkch();
 

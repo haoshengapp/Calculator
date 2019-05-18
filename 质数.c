@@ -1,18 +1,18 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 #include <math.h>
 int quit(void);
 void checkch(void);
 
-/*ÇóÔÚÇø¼ä[2,x]µÄÖÊÊı*/
+/*æ±‚åœ¨åŒºé—´[2,x]çš„è´¨æ•°*/
 int prt1(int y, int cnt)
 {
 	if (y == 1)
 	{
-		printf("2 ");//Êä³öµÚÒ»¸öÖÊÊı
+		printf("2 ");//è¾“å‡ºç¬¬ä¸€ä¸ªè´¨æ•°
 	}
 	else if (cnt == 0)
 	{
-		printf("%d ", y);//Êä³ö·Ç2ÖÊÊı
+		printf("%d ", y);//è¾“å‡ºé2è´¨æ•°
 	}
 	else;
 
@@ -21,14 +21,14 @@ int prt1(int y, int cnt)
 
 int single(int y, int cnt)
 {
-	int n;//ÒòÊı
-	int z = (int)(sqrt(y)) + 1;//ÒòÊıÉÏÏŞ
+	int n;//å› æ•°
+	int z = (int)(sqrt(y)) + 1;//å› æ•°ä¸Šé™
 
-	for (n = 3; n < z; n += 2)//Çø¼ä[3,sqrt(y)]ÉÏµÄÆæÊı
+	for (n = 3; n < z; n += 2)//åŒºé—´[3,sqrt(y)]ä¸Šçš„å¥‡æ•°
 	{
-		if (y % n == 0)//y²»ÊÇÖÊÊı
+		if (y % n == 0)//yä¸æ˜¯è´¨æ•°
 		{
-			cnt++;//¼ÆÊı
+			cnt++;//è®¡æ•°
 		}
 		else;
 	}
@@ -40,27 +40,27 @@ int single(int y, int cnt)
 int calc(void)
 {
 	int x, y;
-	printf("ÇëÊäÈëÉÏÏŞ: ");
+	printf("è¯·è¾“å…¥ä¸Šé™: ");
 	scanf_s("%d", &x);
 
-	for (y = 1; y < x + 1; y += 2)//ÔÚÇø¼ä[1,x)ÉÏµÄÆæÊıy
+	for (y = 1; y < x + 1; y += 2)//åœ¨åŒºé—´[1,x)ä¸Šçš„å¥‡æ•°y
 	{
-		single(y, 0);//µ¥¸öÖÊÊı
+		single(y, 0);//å•ä¸ªè´¨æ•°
 	}
 
 	return 0;
 }
 
-/*ÅĞ¶ÏxÊÇ·ñÎªÖÊÊı*/
+/*åˆ¤æ–­xæ˜¯å¦ä¸ºè´¨æ•°*/
 int prt2(int cnt, int x)
 {
-	if (cnt == 0 && x > 1)//ÖÊÊı¶¨Òå
+	if (cnt == 0 && x > 1)//è´¨æ•°å®šä¹‰
 	{
-		printf("ÊÇÖÊÊı\n");
+		printf("æ˜¯è´¨æ•°\n");
 	}
 	else
 	{
-		printf("²»ÊÇÖÊÊı\n");
+		printf("ä¸æ˜¯è´¨æ•°\n");
 	}
 
 	return 0;
@@ -69,15 +69,15 @@ int prt2(int cnt, int x)
 int judge(void)
 {
 	int x;
-	printf("ÇëÊäÈëx: ");
+	printf("è¯·è¾“å…¥x: ");
 	scanf_s("%d", &x);
 	int cnt = 0;
-	int n;//ÒòÊı
-	int z = (int)(sqrt(x)) + 1;//ÒòÊıÉÏÏŞ
+	int n;//å› æ•°
+	int z = (int)(sqrt(x)) + 1;//å› æ•°ä¸Šé™
 
-	for (n = 2; n < z; n++)//ÔÚÇø¼ä[2,sqrt(x)]µÄÕûÊın
+	for (n = 2; n < z; n++)//åœ¨åŒºé—´[2,sqrt(x)]çš„æ•´æ•°n
 	{
-		if (x % n == 0)//x²»ÊÇÖÊÊı
+		if (x % n == 0)//xä¸æ˜¯è´¨æ•°
 		{
 			cnt++;
 		}
@@ -95,7 +95,7 @@ int prime(void)
 
 	do
 	{
-		printf("1.ÇóÔÚÇø¼ä[2,x]µÄÖÊÊı;\n2.ÅĞ¶ÏxÊÇ·ñÎªÖÊÊı.\n");
+		printf("1.æ±‚åœ¨åŒºé—´[2,x]çš„è´¨æ•°;\n2.åˆ¤æ–­xæ˜¯å¦ä¸ºè´¨æ•°.\n");
 		scanf_s("%d", &index);
 		checkch();
 		switch (index)

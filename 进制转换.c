@@ -1,4 +1,4 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 #include <string.h>
 #include <limits.h>
 int quit(void);
@@ -15,14 +15,14 @@ int bin_input(void)
 
 	for (i = 0; i < strlen(str); i++)
 	{
-		a[i] = (int)(str[i] - '0');//char×ªint
-		if (a[i] == 0 || a[i] == 1)//¼ì²éÓï·¨´íÎó
+		a[i] = (int)(str[i] - '0');//charè½¬int
+		if (a[i] == 0 || a[i] == 1)//æ£€æŸ¥è¯­æ³•é”™è¯¯
 		{
-			x = 2 * x + a[i];//×ªÊ®½øÖÆ
+			x = 2 * x + a[i];//è½¬åè¿›åˆ¶
 		}
 		else
 		{
-			printf("Óï·¨´íÎó.\n");
+			printf("è¯­æ³•é”™è¯¯.\n");
 			return 0;
 		}
 	}
@@ -41,10 +41,10 @@ int bin_output(void)
 
 	if (x != 0)
 	{
-		if (x < 0)//´¦Àí¸ºÊý
+		if (x < 0)//å¤„ç†è´Ÿæ•°
 		{
 			x = x + _I64_MAX + 1;//x + 2^63
-			a[3][3] = 1000;//×î¸ßÎ»ÊÇ1
+			a[3][3] = 1000;//æœ€é«˜ä½æ˜¯1
 		}
 
 		for (i = 0; x > 0; i++)
@@ -79,7 +79,7 @@ int bin_output(void)
 	for (i = 3; i > -1; i--)
 	{
 		for (j = 3; j > -1; j--)//a[i][j]
-			printf("%4.4d ", a[i][j]);//¿Õ¸ñ
+			printf("%4.4d ", a[i][j]);//ç©ºæ ¼
 		printf("\n");
 	}
 
@@ -133,7 +133,7 @@ int numeration(void)
 	int index;
 	do
 	{
-		printf("ÇëÑ¡Ôñ½øÖÆ:\n1.DEC; 2.HEX; 3.BIN; 4.OCT.\n");
+		printf("è¯·é€‰æ‹©è¿›åˆ¶:\n1.DEC; 2.HEX; 3.BIN; 4.OCT.\n");
 		scanf_s("%d", &index);
 
 		switch (index)
@@ -142,7 +142,7 @@ int numeration(void)
 		case(2):hex_input(); break;
 		case(3):bin_input(); break;
 		case(4):oct_input(); break;
-		default:printf("ÊäÈë´íÎó.\n"); break;
+		default:printf("è¾“å…¥é”™è¯¯.\n"); break;
 		}
 	} while (quit());
 
