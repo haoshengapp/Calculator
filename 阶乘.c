@@ -10,12 +10,12 @@ int main()
 	int n, i;
 	puts("[请输入n]");
 	scanf_s("%d", &n);
-	if (n > 1 && n < 500000)
+	if (n > 1 && n < 200000)
 	{
 		i = (int)((n + 0.5) * log10(n) - 0.4342945 * n + 1.3990899);//斯特林公式
+		//int m = i;//用于输出txt文件
 		printf("[%d的阶乘](%d位)\n加载中. . .\n", n, i);
 		int* a = (int*)calloc(i, 4);
-
 		if (a)
 		{
 			*a = 1;
@@ -37,6 +37,21 @@ int main()
 				}
 				printf("(%d个0)", z);
 			}
+			/*
+				FILE* fp;
+				fopen_s(&fp, "newtext.txt", "w");
+				if (fp == NULL)
+				{
+					printf("Error!");
+					exit(1);
+				}
+				while (m > 0)
+				{
+					m--;
+					fprintf(fp, "%d", *(a + m));//输出txt文件
+				}
+				fclose(fp);
+			*/
 			free(a);
 		}
 		puts("");
