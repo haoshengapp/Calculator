@@ -88,7 +88,7 @@ void calc(int n, int* a)
 				*(a + i) %= 10;
 			}
 		}
-		for (z = 0, k = 5; k < j; k *= 5)
+		for (z = 0, k = 5; k <= j; k *= 5)
 		{
 			z += j / k;
 		}
